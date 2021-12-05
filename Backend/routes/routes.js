@@ -10,7 +10,7 @@ router.get("/chatroom", async (req,res) => {
   }
 });
 
-router.post("/api/usercredentials", async (req,res) => {
+router.post("/api/users", async (req,res) => {
   const newUser = new User({
     name: req.body.name,
     email: req.body.email,
@@ -23,19 +23,15 @@ router.post("/api/usercredentials", async (req,res) => {
     console.log("Could not post to database", err);
   }
 });
-// router.get("/api/usercredentials", async (req,res) => {
-//   const newUser = await User.create({
-//     name: req.body.name,
-//     email: req.body.email,
-//     pwd: req.body.email
-//   })
-//   try {
-//     await newUser.save();
-//     console.log(newUser);
-//   } catch (err) {
-//     console.log("Could not post to database", err);
-//   }
-// });
+
+router.get("/api/users", async (req,res) => {
+  const Users = await User.find({})
+  try {
+    res.send(Users)
+  } catch (err) {
+    console.log("Could not post to database", err);
+  }
+});
 
 
 

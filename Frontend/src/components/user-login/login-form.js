@@ -19,7 +19,9 @@ export default class LoginForm extends Component {
 
   }
 
-
+// if we cant figure out how to pass the value of this state to the app component
+// then we need to check login status here or in auth, figuring out these three's
+// interconnectivity is the next step, so to render the chap app 
 
 
   handleChange(event) {
