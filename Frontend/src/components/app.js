@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from "axios";
 
 import Auth from "./pages/auth";
 import Home from "./pages/home";
 import ChatRoom from "./pages/chat-room";
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -22,24 +23,23 @@ export default class App extends Component {
     })
   }
 
-  // checkLoginStatus() {
-  //   return axios
-  //     .get("http://localhost:5000/api/users")
-  //     .then(response => {
-  //       response.data.map(user => {
-  //         console.log(user.email)
-  //       })
-  //     })
-  //     .catch(error => {
-  //       console.log("Error", error);
-  //     });
-  // }
+  checkLoginStatus() {
+    return axios
+      .get("http://localhost:5000/api/users")
+      .then(response => {
+        response.data.map(user => {
+          console.log(user.email)
+        })
+      })
+      .catch(error => {
+        console.log("Error:", error);
+      });
+  }
 
-  // componentDidMount() {
-  //   console.log(this.props.children);
-    
-  //   this.checkLoginStatus();
-  // }
+  componentDidMount() {
+    console.log('mounted');
+    this.checkLoginStatus();
+  }
 
   render() {
     return (
@@ -62,25 +62,4 @@ export default class App extends Component {
   }
 }
 
-// checkLoginStatus() {
-//   return axios
-//     .get("http://localhost:5000/api/credentials")
-//     .then(response => {
-//       const loggedIn = response.data.logged_in;
-//       const loggedInStatus = this.state.loggedInStatus;
-
-//       if (loggedIn && loggedInStatus === "LOGGED_IN") {
-//         return loggedIn;
-//       } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
-//         this.setState({
-//           loggedInStatus: "LOGGED_IN"
-//         });
-//       } else if (!loggedIn && loggedInStatus === "LOGGED_IN") {
-//         this.setState({
-//           loggedInStatus: "NOT_LOGGED_IN"
-//         });
-//       }
-//     })
-//     .catch(error => {
-//       console.log("Error", error);
-//     });
+export default connect(null)(App)

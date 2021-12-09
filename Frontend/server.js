@@ -10,3 +10,5 @@ app.get(/.*/, function (req, res) {
 app.listen(port);
 
 console.log("server started");
+
+// read in to cookies/ on portfolio app = with credentials
