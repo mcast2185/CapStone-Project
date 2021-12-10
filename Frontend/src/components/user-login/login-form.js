@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Home from '../pages/home';
+
+
+
 
 
 
 class LoginForm extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
+    this.checkForUser = this.checkForUser.bind(this)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -35,10 +40,10 @@ class LoginForm extends Component {
       }
       )
       .then(response => {
-        if (response.data.status === "created") {
-          this.checkForUser();
-          // console.log(this.props.users);
-        }
+        console.log("post method response status", response);
+        // if (response.data.status === "created") {
+        //   this.checkForUser();
+        // }
       })
       .catch(error => {
         this.setState({
@@ -48,16 +53,21 @@ class LoginForm extends Component {
     event.preventDefault()
   }
 
-  checkForUser = () => {
-    this.props.dispatch({type: "Registered_User", payload: this.state.email})
+
+  checkForUser(){
+    this.props.dispatch({type: "Registered_User", payload: this.state})
+  }
+
+  componentDidMount(){
+    this.checkForUser();
+    console.log(this.state.name)
+    console.log(mapStateToProps(this.props.users))
   }
 
   render() {
-    console.log(this.props.users);
-    
+
     return (
     <div className="content-wrapper">
-      {this.state.errorText}
 
         <h1 className="center">Create an Account</h1>
 
@@ -96,7 +106,7 @@ class LoginForm extends Component {
             required
           />
 
-            <input type="submit" value="Sign Up" className="btn" onClick={this.checkForUser}/>
+            <input type="submit" value="Sign Up" className="btn" />
           </form>
 
           <h1 className="center">Log in</h1>
@@ -126,7 +136,7 @@ class LoginForm extends Component {
               required
             />
 
-            <input type="submit" value="Log in" className="btn" onClick={this.checkForUser}></input>
+            <input type="submit" value="Log in" className="btn" ></input>
           </form>
       </div>
     )
@@ -134,13 +144,11 @@ class LoginForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const users = state.filter(user => {
-    user.email
+  const users = state.filter((user) => {
+    user
   });
   return {
-    name: state.name,
-    email: state.email,
-    pwd: state.pwd,
+    state,
     users
   }
 }

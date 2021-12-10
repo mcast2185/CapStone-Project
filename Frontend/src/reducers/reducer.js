@@ -1,9 +1,9 @@
 const initialState = [];
-const reducer = (state = initialState, action) => {
-  console.log("reducer", state, action);
-  if (action.type === "Registered_User") {
-    return [...state, action.payload]
+const reducer = (state = initialState, actions) => {
+  if (actions.type === "Registered_User") {
+    return [...state, actions.payload]
   }
+  console.log("Reducer:", state, actions);
   return state;
 }
 
