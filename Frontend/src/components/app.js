@@ -1,144 +1,123 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
 import axios from "axios";
 
+
+import NavComponent from "../components/nav-links/navigation-links";
 import Auth from "./pages/auth";
 import Home from "./pages/home";
-import reducer from '../reducers/reducer';
+import BlogHome from './pages/blogs';
+import pageError from './pages/page-error';
+import LoginForm from './user-login/login-form';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      loginStatus: "Not_Logged_In",
+
+    };
+
+    const userEmails = []
+    this.userEmails = userEmails
+
+    this.handleUserEmails = this.handleUserEmails.bind(this);
+    this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
+    this.handleUnSuccessfulLogin = this.handleUnSuccessfulLogin.bind(this);
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
   }
 
-  state = {
-    loginStatus: "Not_Logged_In"
-  };
-
-  registeredUsers = () => {
-    console.log('');
-  }
 
   handleSuccessfulLogin() {
     this.setState({
       loginStatus: "Logged_In"
+    });
+  }
+
+  handleUnSuccessfulLogin() {
+    this.setState({
+      loginStatus: "Not_Logged_In"
+    })
+  };  
+
+  handleSuccessfulLogout() {
+    this.setState({
+      loginStatus: "Not_Logged_In"
     })
   }
 
+  handleUserEmails() {
+    console.log(this.userEmails);
+    return this.userEmails
+  }
+
   checkLoginStatus() {
-    return axios
-      .get("http://localhost:5000/api/users")
+    axios
+      .get("http://localhost:5000/api/users", {
+        withCredentials: true
+      })
       .then(response => {
         response.data.map(user => {
-          // console.log(user.email)
+          this.userEmails.unshift(user.email)
         })
       })
       .catch(error => {
         console.log("Error:", error);
-      });
+      });  
   }
+
 
   componentDidMount() {
     this.checkLoginStatus();
-    this.registeredUsers();
   }
 
   render() {
-    // console.log(mapStateToProps(this.props.users));
-    
+
     return (
-      <div>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route 
-              exact path="/auth" 
-              render={props => {
-                <Auth
-                  {...props}
-                  handleSuccessfulLogin={this.handleSuccessfulLogin}
+      <React.StrictMode>
+        <div>
+          <Router>
+            <nav>
+              <NavComponent
+                loginStatus={this.state.loginStatus}
+                handleSuccessfulLogout={this.handleSuccessfulLogout}
+              />
+              <Switch>
+                <Route exact path="/" component={Home}/>
+
+                <Route 
+                  path="/auth" 
+                  render={props => {
+                    <Auth
+                      {...props}
+                      handleSuccessfulLogin={this.handleSuccessfulLogin}
+                      checkLoginStatus={this.handleUnSuccessfulLogin}
+                      handleUserEmails={this.handleUserEmails}
+                    />
+                  }}
                 />
-              }}
-            />
-          </Switch>
-        </Router>
-      </div>
+
+                {
+                  this.state.loginStatus === "Logged_In" ? (
+                    <Route path="/blogs" component={BlogHome} /> 
+                  ) : null 
+                }
+
+                <Route component={pageError} />
+              </Switch>
+            </nav>
+          </Router>
+        </div>
+      </React.StrictMode>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {users: state}
-}
-
-export default connect(mapStateToProps)(App)
-
-
-
-// import React, { Component } from 'react';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import axios from "axios";
-
-// import Auth from "./pages/auth";
-// import Home from "./pages/home";
-
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       loginStatus: "Not_Logged_In"
-//     };
-//     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     dispatchState: () => dispatch(state.email),
 //   }
+// } 
 
-//   handleSuccessfulLogin() {
-//     this.setState({
-//       loginStatus: "Logged_In"
-//     })
-//   }
-
-//   checkLoginStatus() {
-//     return axios
-//       .get("http://localhost:5000/api/users")
-//       .then(response => {
-//         response.data.map(user => {
-//           // console.log(user.email)
-//         })
-//       })
-//       .catch(error => {
-//         console.log("Error:", error);
-//       });
-//   }
-
-//   componentDidMount() {
-//     console.log('mounted');
-//     this.checkLoginStatus();
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <Router>
-//           <Switch>
-//             <Home 
-//               exact path="/" 
-//               render={props => {
-//                 <Auth
-//                   {...props}
-//                   handleSuccessfulLogin={this.handleSuccessfulLogin}
-//                 />
-//               }}
-//             />
-//           </Switch>
-//         </Router>
-//       </div>
-//     );
-//   }
-// }
-
-// export default connect(null)(App)
+// export default connect(null, null)(App);
