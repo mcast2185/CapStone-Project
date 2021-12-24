@@ -1,30 +1,50 @@
 .blogs-wrapper {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: 1px solid slategray;
   border-radius: 5px;
   margin: 5px;
-  grid-template-rows: 1fr 1fr 1fr;
   height: 140px;
   width: 270px;
-  background-color: rgb(246, 248, 250);
+  background-color: rgba(255, 255, 255, 0.8);
   
   .blogs-title-wrapper {
     border-bottom: 1px solid cadetblue;
     padding: 5px;
 
-   
+    a {
+      text-decoration: none;
+      color: rgb(137, 1, 190);
+      font-size: 25px;
+      font-weight: 600;
+
+
+      &:hover {
+        text-shadow: rgb(238, 201, 213) 2px 1px;
+      }
+    }
+
   }
 
   .blogs-description-wrapper {
-    padding: 8px;
+    padding: 5px 5px 0px;
   }
 
   .blogs-text-wrapper {
     display: flex;
+    justify-content: center;
     padding: 5px;
     font-size: 13px;
     color: slategray;
-    object-fit: contain;
+
+
+    a {
+      text-decoration: none;
+      color: rgb(137, 1, 190);
+      font-size: 15px;
+      font-weight: 600;
+    }
   }
 }
 

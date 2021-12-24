@@ -55,7 +55,7 @@ class LoginForm extends Component {
   render() {
     return (
       <React.StrictMode>
-        <div className="content-wrapper">
+        <div className="signup-form-wrapper">
           <h1 className="center">Create an Account</h1>
 
           <form 

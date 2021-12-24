@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { useHistory, withRouter } from 'react-router';
-import {useDispatch} from 'react-redux'
+import { withRouter } from 'react-router';
+
 
 import LoginForm from '../user-login/login-form';
-import NavComponent from '../nav-links/navigation-links';
-import BlogHome from './blogs';
-import App from '../app';
+
 
 
 
@@ -49,9 +47,6 @@ class Auth extends Component {
 
   openBlogHome() {
     this.props.history.push('/bloghome/user')
-    // return (
-    //   <NavComponent handleSuccessfulLogout={this.handleSuccessfulLogout}/>
-    // )
   }
 
 

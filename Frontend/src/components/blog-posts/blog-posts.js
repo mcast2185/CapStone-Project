@@ -18,30 +18,32 @@ export default class BlogPost extends Component {
 
 
   getBlogPost() {
-    axios
-      .get(`http://localhost:3000/bloghome/user/${this.state.blogId}`, {
-        withCredentials: true
-      })
-      .then(response => {
-        console.log("response blog post", response.data); 
-        
-      })
-      .catch(err => {
-        console.log("params ", err);
-        
-      })
+    // return (
+      axios
+        .get(`http://localhost:5000/blog/${this.state.blogId}`)
+        .then(response => {
+          console.log(response.data); 
+          
+        })
+        .catch(err => {
+          console.log("params ", err);
+        })
+    // )
   }
+
   componentDidMount() {
-    console.log(this.props);
-    
-    this.getBlogPost()
+    this.getBlogPost();
   }
 
   render(){
     return (
-      <div>
-        hey there
-      </div>
+      <React.StrictMode>
+        <div className='blog-post-content-wrapper'>
+          <h1>  
+            hey there
+          </h1> 
+        </div>
+      </React.StrictMode>
     )
   }
 }

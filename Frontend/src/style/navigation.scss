@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
   height: 55px;
   width: 100vw;
   background-color: rgb(210, 214, 214);
@@ -16,7 +17,7 @@
       display: flex;
       justify-content: center;
       text-decoration: none;
-      color: rgb(184, 119, 96);
+      color: rgb(224, 160, 137);
       transition: .5s ease-in-out;
 
       &:hover {

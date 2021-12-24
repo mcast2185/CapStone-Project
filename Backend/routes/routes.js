@@ -3,13 +3,9 @@ const router = express.Router();
 const {User, BlogPost} = require("../model/model");
 
 
-// simple get requests get requests. pages lack complex functionality
+// get requests.
 
 router.get('/home', (req,res) => {
-  res.render('/')
-});
-
-router.get("/auth", async (req,res) => {
   res.render('/')
 });
 
@@ -33,20 +29,15 @@ router.get("/api/blogposts", async (req, res) => {
   } catch (err) {
     console.log("Could not fetch blogs from database", err);
   }
-})
+});
 
-router.get('/:slug', async (req, res) => {
-  const Blogs = await BlogPost.findOne({slug: req.params.slug});
-  if (Blogs == null) {
-    res.redirect('/')
-  } else {
-    res.render('/bloghome/user', {Blogs})
-  }
+router.get("/blog/:slug", async (req, res) => {
+  res.render('/blog/:slug')
+  
 });
 
 
 // post requests 
-
 
 router.post("/api/users", async (req,res) => {
   const newUser = new User({
@@ -57,7 +48,6 @@ router.post("/api/users", async (req,res) => {
   try {
     newUser = await newUser.save();
     res.send(newUser)
-    console.log(newUser);
   } catch (err) {
     res.status(404).send("Could not post to database", err);
   }
@@ -73,21 +63,11 @@ router.post('/blog/post', async (req,res) => {
   })
   try {
     blog = await blog.save();
-    // res.redirect("/")
+    res.send(blog)
   } catch (err) {
     res.status(404).send("Failed to post blog: ", err);
   }
 });
 
 
-
-
-
-
 module.exports = router;
-
-// resulting url is determined by res.location(), so it will play nicely with mounted apps, relative paths,
-
-
-
-
