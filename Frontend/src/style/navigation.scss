@@ -1,0 +1,32 @@
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  width: 100vw;
+  background-color: rgb(210, 214, 214);
+
+
+  .nav-bar-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px;
+
+    a {
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      color: rgb(184, 119, 96);
+      transition: .5s ease-in-out;
+
+      &:hover {
+        color: rgb(228, 87, 62);
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .sign-out-wrapper {
+    margin-left: 10px;
+  }
+}

@@ -15,31 +15,38 @@ const NavComponent = (props) => {
     )
   };
 
+  
+
   const signOut = () => {
     props.history.push('/')
-    props.handleSuccessfulLogout()
   };
 
   return (
     <React.StrictMode>
-      <nav className='nav-bar'>
+      <div className='nav-bar'>
         <div className='nav-bar-wrapper'>
+
           {dynamicLink("/", "Home")}
-          { props.loginStatus === "Logged_In" ? (
-            dynamicLink("/blogs", "Home") 
+          {dynamicLink("/about", "About")}
+          {dynamicLink("/bloghome/user", "Blogs")}
+          {/* { props.loginStatus === "Logged_In" ? (
+            dynamicLink("/bloghome/user", "Blogs") 
             ) : null
-          }
+          } */}
         </div>
+
         <div className='sign-out-wrapper'>
-          Sign out
-          {props.loginStatus === "Logged_In" ? (
-            <a onClick={signOut}> 
-              <FontAwesomeIcon icon="sign-out-alt" />
-            </a>
-          ) : null}
+      
+          <a onClick={signOut}> 
+            Sign out
+            <FontAwesomeIcon icon="sign-out-alt" />
+          </a>
+         
         </div>
-      </nav>
+
+      </div>
     </React.StrictMode>  
   )
 }
+
 export default withRouter(NavComponent)

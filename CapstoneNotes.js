@@ -1,16 +1,20 @@
-// reworked tons of code based off the redux.js.org page
-// however that code was contingent on not having already set up a redux 
-// store for the entire project, as jordan had from the custom library we 
-// leveraged in js-generate
 
-// create thunk functions within the actions folder, (index.js) 
+// Remaining to do list for app
+//
 
-// once we establish that the users signed in by login status.
-// use the sliceSelector function we created to separate the array and state
-// checklogin will call the new func after axios retrieves the props passed to mongo, 
-// mapdispatch will be our jsx render function from actions folder
-// once the function is called it should finally trigger the (this.state.loginstatus) 
-// logged in in our handle successful login. 
+// work up to "How to Use SQL Subqueries for Insert Statements" then do project
+
+//3 something isnt fully right with the axios call in login file
+
+//5 get the base jsx code written for the blog page
+//6 we will need images right away to gauge the functionality
+//7 set up the routes to where the posts are kept
+//8 use modal to create blogs, double check the schema created
+//9 double check the logic on sign out function in nav
+//10 apply scss
+//11 leave minor notations for others to easily jump in
+//12 deploy to heroku
+
 
 // - scss ideas for page/ general functionality:
   // Create a container to the right of the window that contains thumbnains of blog posts
@@ -19,312 +23,182 @@
   // NAV bar above is transparent. home about contact and blog options are available when hovering over different colored circles that also widen on mouse over
   // Idea of background color changing according to what NAV bar option you hover over
   // Mouse changed to circle that switches to negative over whatever color it hovers
-
-// base code of store
-// {
-//   export interface StoreCreator {
-//     <S, A extends Action, Ext, StateExt>(
-//       reducer: Reducer<S, A>,
-//       enhancer?: StoreEnhancer<Ext, StateExt>
-//     ): Store<S & StateExt, A> & Ext
-//     <S, A extends Action, Ext, StateExt>(
-//       reducer: Reducer<S, A>,
-//       preloadedState?: PreloadedState<S>,
-//       enhancer?: StoreEnhancer<Ext>
-//     ): Store<S & StateExt, A> & Ext
-//   }
-// }
-
-
-// import React, { Component } from 'react';
-// import { connect, useSelector, useDispatch } from 'react-redux';
-// import axios from 'axios';
-
-// import * as actions from "../../actions";
+  // open a modal to welcome the user in/back, clicking continue to close the modal 
+  // could trigger react to slide in the blogs page
 
 
 
 
-// class LoginForm extends Component {
-//   constructor(props){
-//     super(props);
 
-//     this.state = {
-//       name: "",
-//       email: "",
-//       pwd: "",
-//       errorText: ""
-//     };
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  const toggle = (loggedIn, notLoggedIn) => {
+    const loggedIn = "Logged_In";
+    const notLoggedIn = "Not_Logged_In";
+    (!toggle === notLoggedIn && toggle === loggedIn)
     
-    
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   };
-
-
-
-//   handleChange(event) {
-//     this.setState({
-//       [event.target.name]: event.target.value,
-//       errorText: ""
-//     })
-//   };
-
-//   handleSubmit(event) {
-//     axios 
-//       .post("http://localhost:5000/api/users", {
-//         name: this.state.name,
-//         email: this.state.email,
-//         pwd: this.state.pwd
-//         },
-//         {withCredentials: true}
-//       )
-//       .then(response => {
-//         console.log(`handle submit & ${response.data}:`);
-//       })
-//       .catch(error => {
-//         this.setState({
-//           errorText: "Failed login attempt"
-//         })
-//       })
-//     event.preventDefault();
-//   }
-
-  
-//   render() {
-
-//     return (
-//       <div className="content-wrapper">
-
-//         <h1 className="center">Create an Account</h1>
-
-//         <form 
-//           name="signup_form" 
-//           method="POST"
-//           onSubmit={this.handleSubmit}
-//         >
-//           <label name="name">Name</label>
-//           <input
-//             onChange={this.handleChange} 
-//             type="text" 
-//             placeholder="Enter full name here" 
-//             name="name" 
-//             className="field" 
-//             required
-//           />
-            
-//           <label name="email">Email</label>
-//           <input
-//             onChange={this.handleChange} 
-//             type="email" 
-//             placeholder="Enter email here" 
-//             name="email" 
-//             className="field" 
-//             required
-//           />
-
-//           <label name="pwd">Password</label>
-//           <input
-//             onChange={this.handleChange} 
-//             type="password" 
-//             placeholder="Enter password here" 
-//             name="pwd" 
-//             className="field" 
-//             required
-//           />
-
-//           <input 
-//             type="submit" 
-//             value="Sign Up" 
-//             className="btn" 
-//             onClick={() => {
-
-//               this.props.userLoggedIn()
-//               console.log(this.props.userLoggedIn());
-//             }}
-//           />
-//         </form>
-
-//         <h1 className="center">Log in</h1>
-
-//         <form 
-//           name="signup_form" 
-//           method="POST"
-//           onSubmit={this.handleSubmit}
-//         >
-//           <label name="email">Email</label>
-//           <input
-//             onChange={this.handleChange} 
-//             type="email" 
-//             placeholder="Enter email here" 
-//             name="email" 
-//             className="field" 
-//             required
-//           />
-
-//           <label name="pwd">Password</label>
-//           <input
-//             onChange={this.handleChange} 
-//             type="password" 
-//             placeholder="Enter password here" 
-//             name="pwd" 
-//             className="field" 
-//             required
-//           />
-
-//           <input 
-//             type="submit" 
-//             value="Log in" 
-//             className="btn" 
-//             onClick={() => {
-//               this.selectUserEmail
-//             }}
-//           />
-//         </form>
-//       </div>
-//     )
-//   }
-// }
-
-
-
-// export default connect(null, actions)(LoginForm);
+    return (
+      this.state.loginStatus === "Not_Logged_In" ? (
+        this.getState({ loginStatus: toggle })
+          ) : ( this.getState({ loginStatus: !toggle })
+      )
+    )
+  }
 
 
 
 
-// function LoginForm() {
-//   state = {
-//     name: "",
-//     email: "",
-//     pwd: "",
-//     errorText: ""
-//   };
-  
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from "axios";
+import {withRouter} from "react-router";
+
+import NavComponent from "../components/nav-links/navigation-links";
+import {Auth} from "./pages/auth";
+import Home from "./pages/home";
+import BlogHome from './pages/blogs';
+import pageError from './pages/page-error';
 
 
-//   function handleChange(event) {
-//     this.setState({
-//       [event.target.name]: event.target.value,
-//       errorText: ""
-//     })
-//   };
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-//   function handleSubmit(event) {
-//     axios 
-//       .post("http://localhost:5000/api/users", {
-//         name: this.state.name,
-//         email: this.state.email,
-//         pwd: this.state.pwd
-//         },
-//         {withCredentials: true}
-//       )
-//       .then(response => {
-//         console.log(`handle submit & ${response.data}:`);
-//       })
-//       .catch(error => {
-//         setState({
-//           errorText: "Failed login attempt"
-//         })
-//       })
-//     event.preventDefault();
-//   }
+    this.state = {
+      loginStatus: "Not_Logged_In",
+
+    };
+
+
+    // this.openBlogHome = this.openBlogHome.bind(this ) 
+    // this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
+    // this.handleUnSuccessfulLogin = this.handleUnSuccessfulLogin.bind(this);
+    // this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+  }
 
   
+  // handleSuccessfulLogin() {
+  //   this.setState({
+  //     loginStatus: "Logged_In"
+  //   })
+  //   console.log("logged in");
+  // }
 
-//   return (
-//     <div className="content-wrapper">
+  // handleUnSuccessfulLogin() {
+  //   this.setState({
+  //     loginStatus: "Not_Logged_In"
+  //   })
+  // };  
 
-//       <h1 className="center">Create an Account</h1>
+  // handleSuccessfulLogout() {
+  //   this.setState({
+  //     loginStatus: "Not_Logged_In"
+  //   })
+  // }
 
-//       <form 
-//         name="signup_form" 
-//         method="POST"
-//         onSubmit={handleSubmit}
-//       >
-//         <label name="name">Name</label>
-//         <input
-//           onChange={handleChange} 
-//           type="text" 
-//           placeholder="Enter full name here" 
-//           name="name" 
-//           className="field" 
-//           required
-//         />
-          
-//         <label name="email">Email</label>
-//         <input
-//           onChange={handleChange} 
-//           type="email" 
-//           placeholder="Enter email here" 
-//           name="email" 
-//           className="field" 
-//           required
-//         />
+  // checkLoginStatus() {
+  //   axios
+  //     .get("http://localhost:5000/api/users", {
+  //       withCredentials: true
+  //     })
+  //     .then(response => {
+  //       response.data.map(user => {
 
-//         <label name="pwd">Password</label>
-//         <input
-//           onChange={handleChange} 
-//           type="password" 
-//           placeholder="Enter password here" 
-//           name="pwd" 
-//           className="field" 
-//           required
-//         />
+  //         // fix here
 
-//         <input 
-//           type="submit" 
-//           value="Sign Up" 
-//           className="btn" 
-//           onClick={() => {
-//             userLoggedIn()
-//             console.log(userLoggedIn());
-//           }}
-//         />
-//       </form>
+  //         this.state.userEmails.unshift(user.email)
+  //       })
+  //     })
+  //     .catch(error => {
+  //       console.log("Error:", error);
+  //     });  
+  // }
 
-//       <h1 className="center">Log in</h1>
-
-//       <form 
-//         name="signup_form" 
-//         method="POST"
-//         onSubmit={handleSubmit}
-//       >
-//         <label name="email">Email</label>
-//         <input
-//           onChange={handleChange} 
-//           type="email" 
-//           placeholder="Enter email here" 
-//           name="email" 
-//           className="field" 
-//           required
-//         />
-
-//         <label name="pwd">Password</label>
-//         <input
-//           onChange={handleChange} 
-//           type="password" 
-//           placeholder="Enter password here" 
-//           name="pwd" 
-//           className="field" 
-//           required
-//         />
-
-//         <input 
-//           type="submit" 
-//           value="Log in" 
-//           className="btn" 
-//           onClick={() => {
-//             console.log("asdf");
-            
-//           }}
-//         />
-//       </form>
-//     </div>
-//   )
-
-// }
+  // openBlogHome() {
+  //   this.state.loginStatus === "Logged_In" ? (
+  //     axios
+  //       .get("/bloghome/user", {
+  //         withCredentials: true
+  //       })
+  //       .then(response => {
+  //         console.log(response);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       })
+  //   ) : console.log("failed to open blog home: ",null)
+  // }
 
 
+  // componentDidMount() {
+  //   this.checkLoginStatus();
+  // }
 
-// export default connect(null, actions)(LoginForm);
+  // componentDidUpdate() {
+  //   this.openBlogHome()
+  // }
+
+  render() {
+
+    // const renderBlogHome = this.state.loginStatus === "Logged_In" ? (
+    //   <Route path="/bloghome/user" render={props => (
+    //     <BlogHome {...props}  />)}
+    //   /> ) : null;
+
+    return (
+      <React.StrictMode>
+        <div>
+          <Router>
+            <div className='app-router-content'>
+{/* 
+              {renderBlogHome} */}
+              <NavComponent
+                // loginStatus={this.state.loginStatus}
+                // handleSuccessfulLogout={this.handleSuccessfulLogout}
+                />
+              <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/auth" />
+              <Route path="/bloghome/user" render={props => (
+                <BlogHome {...props}  />)}
+              />
+              <Route component={pageError} />
+              </Switch>
+            </div>
+          </Router>
+        </div>
+      </React.StrictMode>
+    );
+  }
+}
+
+
+export default withRouter(App);
+
+
+
+{/* <Route 
+path="/auth" 
+render={props => (
+  <Auth
+    {...props}
+    handleSuccessfulLogin={() => this.handleSuccessfulLogin()}
+    checkLoginStatus={() => this.handleUnSuccessfulLogin()}
+  />
+)}
+/> */}

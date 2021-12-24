@@ -1,39 +1,91 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { useHistory, withRouter } from 'react-router';
+import {useDispatch} from 'react-redux'
 
 import LoginForm from '../user-login/login-form';
+import NavComponent from '../nav-links/navigation-links';
+import BlogHome from './blogs';
+import App from '../app';
 
 
-export default class Auth extends Component {
+
+class Auth extends Component {
   constructor(props){
     super(props);
 
-    this.handleUserEmailAuth = this.handleUserEmailAuth.bind(this);
-    this.handleUnSuccessfulAuth = this.handleUnSuccessfulAuth.bind(this);
-    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+    this.state = {
+      loginStatus: "Not_Logged_In"
+
+    };
+
+    this.openBlogHome = this.openBlogHome.bind(this);
+    this.handleUnSuccessfulLogin = this.handleUnSuccessfulLogin.bind(this);
+    this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+    this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
   }
 
-  handleSuccessfulAuth() {
-    this.props.handleSuccessfulLogin();
-    this.props.history.push("/")
+
+  handleSuccessfulLogin() {
+    this.setState({
+      loginStatus: "Logged_In"
+    })
   }
 
-  handleUnSuccessfulAuth() {
-    this.props.handleUnSuccessfulLogin();
+
+  handleUnSuccessfulLogin() {
+    this.setState({
+      loginStatus: "Not_Logged_In"
+    })
   }
 
-  handleUserEmailAuth() {
-    this.props.handleUserEmails()
+
+  handleSuccessfulLogout() {
+    this.setState({
+      loginStatus: "Not_Logged_In"
+    })
   }
-  
-  render(){
+
+
+  openBlogHome() {
+    this.props.history.push('/bloghome/user')
+    // return (
+    //   <NavComponent handleSuccessfulLogout={this.handleSuccessfulLogout}/>
+    // )
+  }
+
+
+  checkLoginStatus() {
+    axios
+      .get("http://localhost:5000/api/users", {
+        withCredentials: true
+      })
+      .then(response => {
+        if (this.state.loginStatus === "Logged_In") {
+          this.openBlogHome()
+        } 
+      })
+      .catch(error => {
+        console.log("Error:", error);
+      });  
+  }
+
+
+  componentDidUpdate() {
+    this.checkLoginStatus();
+  }
+
+
+  render() {
     return (
       <React.StrictMode>
-        <div>
+        <div className='auth-content-wrapper'>
+
           <LoginForm
-            handleUserEmailAuth={this.handleUserEmailAuth}
-            handleSuccessfulAuth={this.handleSuccessfulAuth}
-            handleUnSuccessfulAuth={this.handleUnSuccessfulAuth}
-            />
+            handleSuccessfulLogin={this.handleSuccessfulLogin}
+            handleUnSuccessfulLogin={this.handleUnSuccessfulLogin}
+          />
+
         </div>
       </React.StrictMode>
     )
@@ -41,30 +93,5 @@ export default class Auth extends Component {
 }
 
 
-// import React, { Component } from 'react';
 
-// export default class Auth extends Component {
-//   constructor(props){
-//     super(props);
-
-//     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-//   }
-
-//   handleSuccessfulAuth() {
-//     if (this.props.handleSuccessfulLogin()) {
-//       this.props.history.push('/');
-//     } else {
-//       console.error("Unsuccessful Authentication"); 
-//     }
-//   }
-
-//   render(){
-//     return (
-//       <div>
-//         <Home 
-//           handleSuccessfulAuth={this.handleSuccessfulAuth}
-//         />
-//       </div>
-//     )
-//   }
-// }
+export default withRouter(Auth);

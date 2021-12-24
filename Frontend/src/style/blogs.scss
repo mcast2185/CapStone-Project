@@ -1,0 +1,31 @@
+.blogs-wrapper {
+  display: grid;
+  border: 1px solid slategray;
+  border-radius: 5px;
+  margin: 5px;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 140px;
+  width: 270px;
+  background-color: rgb(246, 248, 250);
+  
+  .blogs-title-wrapper {
+    border-bottom: 1px solid cadetblue;
+    padding: 5px;
+
+   
+  }
+
+  .blogs-description-wrapper {
+    padding: 8px;
+  }
+
+  .blogs-text-wrapper {
+    display: flex;
+    padding: 5px;
+    font-size: 13px;
+    color: slategray;
+    object-fit: contain;
+  }
+}
+
+
