@@ -5,23 +5,28 @@
   position: fixed;
   height: 55px;
   width: 100vw;
-  background-color: rgb(210, 214, 214);
+  background-color: rgba(242, 230, 253, 0.9);
+  cursor: pointer;
 
 
   .nav-bar-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
+    padding: 5px;
+
 
     a {
       display: flex;
       justify-content: center;
       text-decoration: none;
-      color: rgb(224, 160, 137);
+      color: rgb(243, 174, 195);
       transition: .5s ease-in-out;
+      padding: 8px;
 
       &:hover {
-        color: rgb(228, 87, 62);
+        font-size: 18px;
+        color: rgb(137, 1, 190);
         text-decoration: line-through;
       }
     }
@@ -29,5 +34,6 @@
 
   .sign-out-wrapper {
     margin-left: 10px;
+    color: rgb(137, 1, 190);
   }
 }

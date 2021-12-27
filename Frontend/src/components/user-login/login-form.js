@@ -37,13 +37,7 @@ class LoginForm extends Component {
       )
       .then(response => {
         console.log("response.data")
-      // .then(async (res, req) => {
-        // try {
-        //   this.passStateChange();
-        //   console.log("this.state: ", this.state);  
-        // } catch(err) {
-        //   res.status(404).send("Failed to post sign in credentials:", err); 
-        // }
+        this.props.handleSuccessfulLogin();
         console.log('handleSuccessfulLogin', this.props.handleSuccessfulLogin)
       }
     ).catch(err => {
@@ -55,88 +49,91 @@ class LoginForm extends Component {
   render() {
     return (
       <React.StrictMode>
-        <div className="signup-form-wrapper">
-          <h1 className="center">Create an Account</h1>
-
-          <form 
-            name="signup_form" 
-            method="POST"
-            onSubmit={this.handleSignIn}
-            >
-            <label name="name">Name</label>
-
-            <input 
-              type="text" 
-              placeholder="Enter full name here" 
-              name="name" 
-              onChange={this.handleChange}
-              required
-              />
-              
-            <label name="email">Email</label>
-
-            <input 
-              type="email" 
-              placeholder="Enter email here" 
-              name="email" 
-              onChange={this.handleChange}
-              required
-              />
-
-            <label name="pwd">Password</label>
-
-            <input
-              type="password" 
-              placeholder="Enter password here" 
-              name="pwd" 
-              onChange={this.handleChange}  
-              required
-              />
-
-            <button 
-              type="submit" 
-              value="Sign Up" 
-              className="btn" 
-              onClick={this.props.handleSuccessfulLogin}
+        <div className="login-form-wrapper">
+          <div className='signup-form-wrapper'>
+            
+            <h1 className="center">Create an Account</h1>
+            <form 
+              name="signup_form" 
+              method="POST"
+              onSubmit={this.handleSignIn}
               >
-              Sign up
-            </button>
-          </form>
+              <label name="name">Name</label>
 
-          <h1 className="center">Log in</h1>
+              <input 
+                type="text" 
+                placeholder="Enter full name here" 
+                name="name" 
+                onChange={this.handleChange}
+                required
+                />
+                
+              <label name="email">Email</label>
 
-          <form 
-            name="signup_form" 
-            method="POST"
-            onSubmit={this.handleSignIn}
-            >
-            <label name="email">Email</label>
-            <input 
-              type="email" 
-              placeholder="Enter email here" 
-              name="email" 
-              onChange={this.handleChange}
-              required
-              />
+              <input 
+                type="email" 
+                placeholder="Enter email here" 
+                name="email" 
+                onChange={this.handleChange}
+                required
+                />
 
-            <label name="pwd">Password</label>
-            <input
-              type="password" 
-              placeholder="Enter password here" 
-              name="pwd" 
-              onChange={this.handleChange}  
-              required
-              />
+              <label name="pwd">Password</label>
 
-            <button 
-              type="submit" 
-              value="Sign in" 
-              className="btn" 
-              onSubmit={this.props.handleSuccessfulLogin}
+              <input
+                type="password" 
+                placeholder="Enter password here" 
+                name="pwd" 
+                onChange={this.handleChange}  
+                required
+                />
+
+              <button 
+                type="submit" 
+                value="Sign Up" 
+                className="btn" 
+                onClick={this.props.handleSuccessfulLogin}
+                >
+                Sign up
+              </button>
+            </form>
+          </div>
+          <div className='sign-in-form-wrapper'>
+            
+            <h1 className="center">Log in</h1>
+            <form 
+              name="signup_form" 
+              method="POST"
+              onSubmit={this.handleSignIn}
               >
-              Sign in
-            </button>
-          </form>
+              <label name="email">Email</label>
+              <input 
+                type="email" 
+                placeholder="Enter email here" 
+                name="email" 
+                onChange={this.handleChange}
+                required
+                />
+
+              <label name="pwd">Password</label>
+              <input
+                type="password" 
+                placeholder="Enter password here" 
+                name="pwd" 
+                onChange={this.handleChange}  
+                required
+                />
+
+              <button 
+                type="submit" 
+                value="Sign in" 
+                className="btn" 
+                onSubmit={this.props.handleSuccessfulLogin}
+                >
+                Sign in
+              </button>
+            </form>
+          </div>
         </div>
       </React.StrictMode> 
     )

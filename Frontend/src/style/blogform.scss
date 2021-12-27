@@ -1,0 +1,50 @@
+.blog-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgba(206, 196, 219, 0.973);
+  border-radius: 5px;
+  padding: 5px;
+  height: 49vh;
+
+
+  h1 {
+    color: white;
+    font-size: 35px;
+    font-weight: 800;
+    text-shadow: rgb(114, 42, 114) 2px 2px 2px;
+  }
+
+
+  .form-wrapper {
+    display: flex;
+    color: white;
+    text-shadow: rgb(114, 42, 114) 2px 2px 2px;
+    font-size: 20px;
+
+
+    input {
+      border: rgb(224, 227, 230) solid 1px;
+      border-radius: 5px;
+      height: 40px;
+      width: 260px;
+    }
+
+    
+    .textbox {
+      height: 70px;
+      width: 600px;
+    }
+
+
+    button {
+      display: flex;
+      background-color: white;
+      border: 1px solid rgb(182, 160, 175);
+      font-size: 18px;
+      margin-top: 10px;
+      color: rgb(148, 58, 121);
+      border-radius: 5px;
+    }
+  }
+}

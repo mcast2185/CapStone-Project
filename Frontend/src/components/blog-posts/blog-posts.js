@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import CreatePostForm from './blog-form';
 
 
 export default class BlogPost extends Component {
@@ -18,17 +19,16 @@ export default class BlogPost extends Component {
 
 
   getBlogPost() {
-    // return (
-      axios
-        .get(`http://localhost:5000/blog/${this.state.blogId}`)
-        .then(response => {
-          console.log(response.data); 
-          
+    axios
+      .get(`http://localhost:5000/blog/${this.state.blogId}`)
+      .then(response => {
+        this.setState({
+          blogRendered: response.data.blog_post
         })
-        .catch(err => {
-          console.log("params ", err);
-        })
-    // )
+      })
+      .catch(err => {
+        console.log("params ", err);
+      })
   }
 
   componentDidMount() {
@@ -40,7 +40,9 @@ export default class BlogPost extends Component {
       <React.StrictMode>
         <div className='blog-post-content-wrapper'>
           <h1>  
-            hey there
+            <CreatePostForm
+              blog={this.state.blogRendered}
+            />
           </h1> 
         </div>
       </React.StrictMode>

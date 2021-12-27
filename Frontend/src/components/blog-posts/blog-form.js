@@ -2,20 +2,32 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-export default class CreatePost extends Component {
+export default class CreatePostForm extends Component {
   constructor(props){
     super(props);
 
     this.state = {
       title: "",
       description: "",
-      markdownText: ""
+      markdownText: "",
+      apiPostUrl: "http://localhost:5000/blog/post",
+      method: "post"
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBlogSubmission = this.handleBlogSubmission.bind(this);
   }
 
+
+  buildForm() {
+    let formData = new FormData();
+
+    formData.append("blog_post[title]", this.state.title);
+    formData.append("blog_post[description]", this.state.description);
+    formData.append("blog_post[markdownText]", this.state.markdownText);
+  
+    return formData
+  }
 
 
   handleChange(event) {
@@ -26,21 +38,19 @@ export default class CreatePost extends Component {
   
   
   handleBlogSubmission(event) {
-    axios
-      .post("http://localhost:5000/blog/post",  
-        {
-          title: this.state.title,
-          description: this.state.description,
-          markdownText: this.state.markdownText
-        }, 
-        {withCredentials: true}
-      )
+    axios({
+      method: this.state.method,
+      url: this.state.apiPostUrl,
+      data: this.buildForm(), 
+      withCredentials: true
+    })
       .then(response => {
-        console.log("response.data", response)
+        console.log(response.data)
+        this.props.handleFormSubmit(response.data.blog_post)
       })
       .catch(err => {
-      console.log('this is an error', err);
-    })
+      console.log('Error submitting form:', err);
+      })
   event.preventDefault();
 }
 
@@ -49,47 +59,60 @@ export default class CreatePost extends Component {
     return (
       <div className="blog-form-wrapper">
         <h1>Share your thoughts</h1>
-
-        <form  
-          method="POST"
-          onSubmit={this.handleBlogSubmission}
-          >
-
-          <input 
-            type="text" 
-            placeholder="Create your title" 
-            name="title" 
-            onChange={this.handleChange}
-            value={this.state.title}
-            required
-            />
-
-          <input 
-            type="description" 
-            placeholder="In a few words, describe the post" 
-            name="description" 
-            onChange={this.handleChange}
-            value={this.state.description}
-            required
-            />
-
-          <input
-            type="markdownText" 
-            placeholder="Write your content here" 
-            name="markdownText" 
-            onChange={this.handleChange}  
-            value={this.state.markdownText}
-            required
-            />
-
-          <button 
-            type="submit" 
-            value="Create blog" 
-            className="btn"
+        <div className='form-wrapper'>
+          <form  
+            method="POST"
+            onSubmit={this.handleBlogSubmission}
             >
-            Post
-          </button>
-        </form>
+
+            <div className='title-wrapper'>
+              <label>Title:</label>
+              <br/>
+              <input 
+                type="text" 
+                placeholder="Create your title" 
+                name="title" 
+                onChange={this.handleChange}
+                value={this.state.title}
+                required
+                />
+            </div>
+
+            <div className='description-wrapper'>   
+              <label>Description:</label>
+              <br/>
+              <input 
+                type="text" 
+                placeholder="In a few words, describe the post" 
+                name="description" 
+                onChange={this.handleChange}
+                value={this.state.description}
+                required
+                />
+            </div>
+
+            <div className='markdownText-wrapper'>  
+              <label>Content:</label>
+              <br/>
+              <input
+                type="text" 
+                className='textbox'
+                placeholder="Write your content here" 
+                name="markdownText" 
+                onChange={this.handleChange}  
+                value={this.state.markdownText}
+                required
+                />
+            </div>
+
+            <button 
+              type="submit" 
+              className="btn"
+              >
+              Post
+            </button>
+          </form>
+        </div>
       </div>
     )
   }

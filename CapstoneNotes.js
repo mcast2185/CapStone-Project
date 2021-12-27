@@ -1,14 +1,12 @@
 
-// Remaining to do list for app
-//
-
 // work up to "How to Use SQL Subqueries for Insert Statements" then do project
+
+// we left off creating the form for our posts. we need to find where to place the code or
+// if we will be exercising a modal. the axios calls are the main things from fully having this up 
+// and running. remember to switch back most the code from auth to app once functioning.
 
 //3 something isnt fully right with the axios call in login file
 
-//5 get the base jsx code written for the blog page
-//6 we will need images right away to gauge the functionality
-//7 set up the routes to where the posts are kept
 //8 use modal to create blogs, double check the schema created
 //9 double check the logic on sign out function in nav
 //10 apply scss

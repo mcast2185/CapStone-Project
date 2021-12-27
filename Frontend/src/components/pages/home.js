@@ -6,8 +6,8 @@ import Auth from './auth';
 export default function() {
   return (
     <React.StrictMode>
-      <div className="home-content-wrapper">
-        <div className='grid-wrapper'>
+      <div>
+        <div className='home-content-wrapper'>
           <Auth />
         </div>
       </div>
