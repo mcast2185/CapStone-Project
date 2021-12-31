@@ -6,7 +6,7 @@ import CreatePostForm from './blog-form';
 
 ReactModal.setAppElement(".app-wrapper");
 
-export default class BlogModal extends Component {
+class BlogModal extends Component {
   constructor(props){
     super(props);
     
@@ -44,7 +44,8 @@ export default class BlogModal extends Component {
           handleFormSubmit={this.handleFormSubmit}
         />
       </ReactModal>
-      
     )
   }
 }
+
+export default BlogModal;

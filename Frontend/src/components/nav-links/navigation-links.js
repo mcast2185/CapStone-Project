@@ -15,9 +15,8 @@ const NavComponent = (props) => {
     )
   };
 
-  
-
   const signOut = () => {
+    props.handleSuccessfulLogout();
     props.history.push('/')
   };
 
@@ -28,22 +27,20 @@ const NavComponent = (props) => {
 
           {dynamicLink("/", "Home")}
           {dynamicLink("/about", "About")}
-          {dynamicLink("/bloghome/user", "Blogs")}
-          {/* { props.loginStatus === "Logged_In" ? (
-            dynamicLink("/bloghome/user", "Blogs") 
+          {
+            props.loginStatus === "Logged_In" ? (
+              dynamicLink("/bloghome/user", "Blogs") 
             ) : null
-          } */}
+          }
         </div>
-
-        <div className='sign-out-wrapper'>
-      
-          <a onClick={signOut}> 
-            Sign out
-            <FontAwesomeIcon icon="sign-out-alt" />
-          </a>
-         
-        </div>
-
+          {
+            props.loginStatus === "Logged_In" ? (
+              <a onClick={signOut} className='sign-out-wrapper'> 
+                Sign out
+                <FontAwesomeIcon icon="sign-out-alt" />
+              </a>
+            ) : null
+          }
       </div>
     </React.StrictMode>  
   )

@@ -2,31 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-export default class CreatePostForm extends Component {
+class CreatePostForm extends Component {
   constructor(props){
     super(props);
 
     this.state = {
       title: "",
       description: "",
-      markdownText: "",
-      apiPostUrl: "http://localhost:5000/blog/post",
-      method: "post"
+      markdownText: ""
+
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBlogSubmission = this.handleBlogSubmission.bind(this);
-  }
-
-
-  buildForm() {
-    let formData = new FormData();
-
-    formData.append("blog_post[title]", this.state.title);
-    formData.append("blog_post[description]", this.state.description);
-    formData.append("blog_post[markdownText]", this.state.markdownText);
-  
-    return formData
   }
 
 
@@ -38,26 +26,32 @@ export default class CreatePostForm extends Component {
   
   
   handleBlogSubmission(event) {
-    axios({
-      method: this.state.method,
-      url: this.state.apiPostUrl,
-      data: this.buildForm(), 
-      withCredentials: true
-    })
+    axios
+      .post("http://localhost:5000/blog/post", {
+        title: this.state.title,
+        description: this.state.description,
+        markdownText: this.state.markdownText
+        }, 
+        { withCredentials: true}
+      )
       .then(response => {
         console.log(response.data)
-        this.props.handleFormSubmit(response.data.blog_post)
+        this.props.handleFormSubmit(response.data)
       })
       .catch(err => {
       console.log('Error submitting form:', err);
       })
-  event.preventDefault();
-}
+    event.preventDefault();
+  }
 
 
-  render(){
+  render() {
     return (
       <div className="blog-form-wrapper">
+        <div className='border-line-one'/>
+        <div className='border-line-two'/>
+        <div className='border-line-three'/>
+
         <h1>Share your thoughts</h1>
         <div className='form-wrapper'>
           <form  
@@ -113,7 +107,16 @@ export default class CreatePostForm extends Component {
             </button>
           </form>
         </div>
+        <div className='quote-wrapper'>
+            <h2> 
+              "Either write something worth reading or do something worth writing"
+            </h2>
+
+            <p>-Benjamin Franklin </p>
+          </div>
       </div>
     )
   }
 }
+
+export default CreatePostForm;

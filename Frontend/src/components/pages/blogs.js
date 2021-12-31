@@ -7,7 +7,7 @@ import BlogModal from '../blog-posts/blog-modal';
 
 
 
-export default class BlogHome extends Component {
+class BlogHome extends Component {
   constructor(props){
     super(props);
 
@@ -17,24 +17,21 @@ export default class BlogHome extends Component {
       modalIsOpen: false
     }
 
-    this.fetchBlogs = this.fetchBlogs.bind(this);
-    this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
+    this.fetchBlogPosts = this.fetchBlogPosts.bind(this);
+    this.handleNewBlogPost = this.handleNewBlogPost.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleBlogSubmit = this.handleBlogSubmit.bind(this);
   }
 
-  fetchBlogs() {
+  fetchBlogPosts() {
     axios
       .get("http://localhost:5000/api/blogposts?order_by=createdAt&direction=desc", {
         withCredentials: true
       })
-      .then(response => {
-        console.log(response.data);
-        
+      .then(response => {        
         this.setState({
           blogPosts: response.data
         })
-        // console.log(this.state.blogPosts);
       })
       .catch(err => {
         console.error("Could not fetch blogposts: blogs.js", err);
@@ -55,7 +52,7 @@ export default class BlogHome extends Component {
     });
   }
 
-  handleNewBlogClick() {
+  handleNewBlogPost() {
     this.setState({
       modalIsOpen: true
     })
@@ -63,29 +60,24 @@ export default class BlogHome extends Component {
 
 
   componentDidMount() {
-    this.fetchBlogs();
+    this.fetchBlogPosts();
   }
 
   render() {
     
     const displayPost = [];
-
     const renderBlogPosts = this.state.blogPosts.map(blog => {
       const order = this.state.blogOrder ++
-      const blogPost = <Blogs key={blog._id} order={order} blog={blog} />
+      const blogPost = <Blogs key={order} order={order} blog={blog} />
 
       blogPost.props.order +1 === this.state.blogPosts.length ? (
         displayPost.push(blogPost) 
       ) : null;
 
-      return (
-        blogPost
-      ) 
+      return blogPost
     });
 
     const blogDetail = displayPost[0]
-    
-    console.log(blogDetail);
     
     return (
       <div>
@@ -99,7 +91,7 @@ export default class BlogHome extends Component {
                 <div className='short-content-wrapper'>
                   <p> Add voice to your ideas. </p>
                   <p> Be heard through your content. </p>
-                  <p> Connect through your content. </p>
+                  <p> Connect with your writing. </p>
                 </div>
                 
                 <h2> Illustrate your thoughts </h2>
@@ -132,9 +124,11 @@ export default class BlogHome extends Component {
                 modalIsOpen={this.state.modalIsOpen}
               />
               <div className='modal-blog-link'>
-                <a onClick={this.handleNewBlogClick}>
+                <a onClick={this.handleNewBlogPost}>
                   <FontAwesomeIcon icon="plus-square"/>
+                  <br/>
                 </a>
+                <p>Create here</p>
               </div>
             </div>
           </div>
@@ -146,3 +140,5 @@ export default class BlogHome extends Component {
     )
   }
 }
+
+export default BlogHome;

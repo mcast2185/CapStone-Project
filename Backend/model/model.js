@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const {slugify, slug} = require('slugify');
+// const {slugify, slug} = require('slugify');
 
 const LoginInfo = new Schema({
   name: {
@@ -19,6 +19,10 @@ const LoginInfo = new Schema({
 });
 
 const BlogPostField = new Schema({
+  _id: {
+    type: String,
+    unique: true
+  },
   title: {
     type: String,
     required: true
@@ -37,27 +41,17 @@ const BlogPostField = new Schema({
   },
   slug: {
     type: String,
-    required: true,
     unique: true
   }
 });
 
 
-LoginInfo.pre('validate', function() {
-  if (this.title){
-    this.slug = slugify(this.title, {remove: /[*+~.()'"!:@]/, strict: true})
-  } else {
-    this.slug = slugify(this.createdAt)
-  }
-});
 
-BlogPostField.pre('validate', function() {
-  if (this.title){
-    this.slug = slugify(this.title, {remove: /[*+~.()'"!:@]/, strict: true})
-  } else {
-    this.slug = slugify(this.createdAt)
-  }
-});
+// BlogPostField.pre('validate', function() {
+//   if (this.title){
+//     this.slug = slugify(this.title, {remove: /[*+~.()'"!:@]/, strict: true})
+//   } 
+// });
 
 
 

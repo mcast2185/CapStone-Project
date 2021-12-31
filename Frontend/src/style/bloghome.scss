@@ -3,6 +3,8 @@
   display: flex;
   justify-content: center;
   cursor: default;
+  background-image: url('../../static/assets/images/brush.png');
+  background-position:inherit;
   top: 55px;
   height: calc(100vh - 55px);
 
@@ -22,6 +24,7 @@
       align-items: center;
       background-image: url('../../static/assets/images/mountains.png');
       background-repeat: no-repeat;
+      background-size: cover;
       background-position: center;
       object-fit: contain;
       height: 70vh;
@@ -79,11 +82,30 @@
 
   .modal-blog-link {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     cursor: pointer;
-    left: 50vw;
-    bottom: 5vh;
+    line-height: 25px;
+    left: 48.5vw;
+    bottom: 4vh;
     font-size: 30px;
-    color: rgba(137, 1, 190, .6);
+    color: rgba(86, 19, 112, 0.6);
+
+    a {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0px;
+    }
+
+    p {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-size: 20px;
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+    }
   }
 }
 
@@ -93,9 +115,12 @@
   flex-direction: column;
   position: fixed;
   transition: 3s ease-in;
-  object-fit: contain;
+  overflow: scroll;
+  border: 1px solid rgba(230, 184, 179, .5);
+  border-radius: 5px;
+  height: 86vh;
   right: 0;
-  background-color: rgba(242, 230, 253, 0.6);
+  background-color: rgba(247, 241, 253, 0.9);
   animation: fadeIn 3.5s;
 }
 

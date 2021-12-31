@@ -1,0 +1,52 @@
+.about-page-wrapper {
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../static/assets/images/about.jpg");
+  height: 100vh;
+  width: 100vw;
+
+  .about { 
+    display: flex;
+    justify-content: center;
+
+    height: 40vh;
+    width: 35vw;
+    
+
+    h1 {
+      color: black;
+      font-size: 220px;
+      letter-spacing: -11px;
+    }
+  }
+
+  // .left-content-wrapper {
+  //   position: fixed;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   left: 10vh;
+
+
+
+  //   img {
+  //     opacity: .9;
+  //     height: 65vh;
+  //     width: 20vw;
+  //     object-fit: fill;
+  //   }
+  // }
+
+  // .right-content-wrapper {
+  //   position: fixed;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   right: 10vw;
+  //   height: 70vh;
+  //   width: 40vw;
+  //   background-color: rgba(247, 241, 253, 0.8);
+  // }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class LoginForm extends Component {
@@ -12,6 +12,7 @@ class LoginForm extends Component {
       email: "",
       pwd: ""
     };
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
@@ -27,7 +28,7 @@ class LoginForm extends Component {
   
   handleSignIn(event) {
     axios
-      .post("http://localhost:5000/api/users",  
+      .post("http://localhost:5000/api/users", 
         {
           name: this.state.name,
           email: this.state.email,
@@ -36,15 +37,23 @@ class LoginForm extends Component {
         {withCredentials: true}
       )
       .then(response => {
-        console.log("response.data")
-        this.props.handleSuccessfulLogin();
-        console.log('handleSuccessfulLogin', this.props.handleSuccessfulLogin)
-      }
-    ).catch(err => {
-      console.log('this is an error', err);
-    })
-  event.preventDefault();
-}
+        if (response.data) {
+          this.props.handleSuccessfulAuthentication();
+          this.props.handleUserCredentials(response.data);
+        } else {
+          console.log("nope");
+        };
+
+        }
+      )
+      .catch(err => {
+        console.log('Error registering user:', err);
+        this.props.handleFailedAuthentication();
+      })
+    event.preventDefault();
+  }
+
+
   
   render() {
     return (
@@ -52,14 +61,19 @@ class LoginForm extends Component {
         <div className="login-form-wrapper">
           <div className='signup-form-wrapper'>
             
-            <h1 className="center">Create an Account</h1>
+            <h1 className="form-heading">
+              Create an Account
+            </h1>
             <form 
               name="signup_form" 
               method="POST"
               onSubmit={this.handleSignIn}
               >
-              <label name="name">Name</label>
 
+              <div className='label-wrapper'>
+                <FontAwesomeIcon icon="user"/>
+                <label name="name">Name</label>
+              </div>
               <input 
                 type="text" 
                 placeholder="Enter full name here" 
@@ -67,9 +81,11 @@ class LoginForm extends Component {
                 onChange={this.handleChange}
                 required
                 />
-                
-              <label name="email">Email</label>
 
+              <div className='label-wrapper'>
+                <FontAwesomeIcon icon="envelope"/>
+                <label name="email">Email</label>
+              </div>
               <input 
                 type="email" 
                 placeholder="Enter email here" 
@@ -78,59 +94,24 @@ class LoginForm extends Component {
                 required
                 />
 
-              <label name="pwd">Password</label>
-
+              <div className='label-wrapper'>
+                <FontAwesomeIcon icon="lock"/>
+                <label name="pwd">Password</label>
+              </div>
               <input
                 type="password" 
                 placeholder="Enter password here" 
-                name="pwd" 
+                name="pwd"
                 onChange={this.handleChange}  
                 required
                 />
 
               <button 
-                type="submit" 
-                value="Sign Up" 
+                type="submit"
+                value="Sign in"
                 className="btn" 
-                onClick={this.props.handleSuccessfulLogin}
                 >
                 Sign up
-              </button>
-            </form>
-          </div>
-          <div className='sign-in-form-wrapper'>
-            
-            <h1 className="center">Log in</h1>
-            <form 
-              name="signup_form" 
-              method="POST"
-              onSubmit={this.handleSignIn}
-              >
-              <label name="email">Email</label>
-              <input 
-                type="email" 
-                placeholder="Enter email here" 
-                name="email" 
-                onChange={this.handleChange}
-                required
-                />
-
-              <label name="pwd">Password</label>
-              <input
-                type="password" 
-                placeholder="Enter password here" 
-                name="pwd" 
-                onChange={this.handleChange}  
-                required
-                />
-
-              <button 
-                type="submit" 
-                value="Sign in" 
-                className="btn" 
-                onSubmit={this.props.handleSuccessfulLogin}
-                >
-                Sign in
               </button>
             </form>
           </div>
@@ -142,41 +123,3 @@ class LoginForm extends Component {
 
 
 export default LoginForm;
-
-// export default connect(null, actions)(LoginForm);
-
-  // pushState, replace, goforward, location, push, 
-  // createKey, createHref, path, url, confirm,
-  // cookieStore, getAll/get, 
-  // bindActionCreator(actionCreator, dispatch)
-  // importState(state, _ref), openDatabase()
-// origin: "http://localhost:3000"
-//res.location() works well with redirect(
-
-
-
-
-
-
-
-
-  // handleSignIn(event) {
-
-  //     axios
-  //       .post("http://localhost:5000/api/users", {
-  //           name: this.state.name,
-  //           email: this.state.email,
-  //           pwd: this.state.pwd
-  //         },
-  //         {withCredentials: true}
-  //       )
-  //       .then(response => {
-  //         this.props.handleSuccessfulAuth();
-  //           console.log("user credentials received: ", response.data);
-  //       })
-  //       .catch(err => {
-  //           console.log("Failed to post sign in credentials:", err); 
-  //         })
-
-  //     event.preventDefault();
-  // }  

@@ -2,24 +2,49 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: rgba(206, 196, 219, 0.973);
+  background-color: rgb(228, 240, 240);
   border-radius: 5px;
   padding: 5px;
-  height: 49vh;
+  height: 100%;
+  width: 100%;
 
 
   h1 {
-    color: white;
+    position: relative;
+    color: rgb(209, 209, 209);
     font-size: 35px;
     font-weight: 800;
-    text-shadow: rgb(114, 42, 114) 2px 2px 2px;
+    text-shadow: rgb(97, 97, 97) 1px 1px;
+  }
+
+  .border-line-one {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 6.5vh;
+    width: 47vw;
+    border: 1px solid rgb(180, 179, 179);
+    border-bottom: none;
+    border-left: none;
   }
 
 
+  .border-line-three {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 18.5vh;
+    width: 40vw;
+    border: 1px solid rgb(180, 179, 179);
+    border-bottom: none;
+    border-left: none;
+  }
+
   .form-wrapper {
+    position: relative;
     display: flex;
     color: white;
-    text-shadow: rgb(114, 42, 114) 2px 2px 2px;
+    text-shadow: rgb(77, 74, 77) 1px 1px 2px;
     font-size: 20px;
 
 
@@ -40,11 +65,42 @@
     button {
       display: flex;
       background-color: white;
-      border: 1px solid rgb(182, 160, 175);
+      border: 1px solid rgb(180, 179, 179);
       font-size: 18px;
       margin-top: 10px;
-      color: rgb(148, 58, 121);
+      color: rgb(180, 179, 179);
       border-radius: 5px;
     }
   }
+  .quote-wrapper {
+    position: fixed;
+    display: grid;
+    grid-template-columns: 2.5fr .7fr;
+    border: 1px solid rgb(180, 179, 179);
+    border-radius: 2px;
+    top: 0;
+    right: 0;
+    height: 11vh;
+    width: 25vw;
+    line-height: 21px;
+
+
+    h2 {
+      font-family: 'Lobster', cursive;
+      mix-blend-mode: difference;
+      color: rgba(180, 179, 179, .6);
+      text-shadow: rgba(97, 97, 97, .9) .5px .5px;
+      font-size: 20px;
+      margin-bottom: 0;
+      margin-top: 10px;
+    }
+
+    p {
+      margin-top: 80px;
+      font-family: 'Saira Extra Condensed', sans-serif;
+      color: rgb(59, 58, 58);
+
+    }
+  }
 }
+

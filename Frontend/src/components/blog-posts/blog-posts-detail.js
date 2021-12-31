@@ -4,7 +4,7 @@ import axios from 'axios';
 import CreatePostForm from './blog-form';
 
 
-export default class BlogPost extends Component {
+class BlogPostDetail extends Component {
   constructor(props){
     super(props);
 
@@ -25,6 +25,8 @@ export default class BlogPost extends Component {
         this.setState({
           blogRendered: response.data.blog_post
         })
+        console.log(this.state.blogRendered);
+        
       })
       .catch(err => {
         console.log("params ", err);
@@ -49,3 +51,5 @@ export default class BlogPost extends Component {
     )
   }
 }
+
+export default BlogPostDetail;

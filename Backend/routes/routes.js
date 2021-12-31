@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const {User, BlogPost} = require("../model/model");
+const mySchemas = require("../model/model");
+const {User, BlogPost} = mySchemas;
 
 
 // get requests.
@@ -11,6 +12,9 @@ router.get('/home', (req,res) => {
 
 router.get('/bloghome/user', (req,res) => {
   res.render('/bloghome/user')
+});
+router.get('/about', (req,res) => {
+  res.render('/about')
 });
 
 router.get("/api/users", async (req,res) => {
@@ -23,9 +27,9 @@ router.get("/api/users", async (req,res) => {
 });
 
 router.get("/api/blogposts", async (req, res) => {
-  const Blogs = await BlogPost.find({})
+  const BlogPosts = await BlogPost.find({})
   try {
-    res.send(Blogs)
+    res.send(BlogPosts)
   } catch (err) {
     console.log("Could not fetch blogs from database", err);
   }
@@ -39,34 +43,25 @@ router.get("/blog/:slug", async (req, res) => {
 
 // post requests 
 
-router.post("/api/users", async (req,res) => {
-  const newUser = new User({
+router.post("/api/users", (req, res) => {
+  const Users = new User({
     name: req.body.name,
     email: req.body.email,
     pwd: req.body.email
   })
-  try {
-    newUser = await newUser.save();
-    res.send(newUser)
-  } catch (err) {
-    res.status(404).send("Could not post to database", err);
-  }
+  Users.save();
+  res.send(Users);
 });
 
 
-router.post('/blog/post', async (req,res) => {
-  const blog = new BlogPost({
+router.post("/blog/post", (req,res) => {
+  const BlogPosts = new BlogPost({
     title: req.body.title,
     description: req.body.description,
-    markdown: req.body.markdown,
-    createdAt
+    markdownText: req.body.markdown,
   })
-  try {
-    blog = await blog.save();
-    res.send(blog)
-  } catch (err) {
-    res.status(404).send("Failed to post blog: ", err);
-  }
+  BlogPosts.save();
+  res.send(BlogPosts)
 });
 
 
