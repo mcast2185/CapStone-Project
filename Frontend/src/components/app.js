@@ -47,6 +47,7 @@ class App extends Component {
     this.setState({
       loginStatus: "Not_Logged_In"
     });
+    window.localStorage.clear();
   }
 
   newUserCredentials(user) {
@@ -59,6 +60,7 @@ class App extends Component {
     localStorage.setItem("user", userInfo)
 
     const loggedInUser = localStorage.getItem("user");
+
     if (loggedInUser) {
       this.setState({
         currentUser: loggedInUser
@@ -79,19 +81,21 @@ class App extends Component {
       this.setState({
         loginStatus: "Logged_In"
       })
+    } else if (localStorage.getItem("user") === null | undefined ) {
+      this.handleUnSuccessfulLogin();
     }
   }
 
-  // componentWillUnmount() {
-  //   localStorage.clear();
-  // }
+  componentWillUnmount() {
+    if (window.close()) {
+      window.localStorage.clear();
+    }
+  }
 
   render() {
-    if (window.close() ) {
-      localStorage.clear();
-      sess
-    }
-    
+    if (window.close()) {
+      window.localStorage.clear();
+    } 
     return (
       <React.StrictMode>
         <div>

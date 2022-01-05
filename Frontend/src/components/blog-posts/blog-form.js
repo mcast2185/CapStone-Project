@@ -9,7 +9,7 @@ class CreatePostForm extends Component {
     this.state = {
       title: "",
       description: "",
-      markdownText: ""
+      text: ""
 
     }
 
@@ -30,7 +30,7 @@ class CreatePostForm extends Component {
       .post("http://localhost:5000/blog/post", {
         title: this.state.title,
         description: this.state.description,
-        markdownText: this.state.markdownText
+        text: this.state.text
         }, 
         { withCredentials: true}
       )
@@ -48,10 +48,6 @@ class CreatePostForm extends Component {
   render() {
     return (
       <div className="blog-form-wrapper">
-        <div className='border-line-one'/>
-        <div className='border-line-two'/>
-        <div className='border-line-three'/>
-
         <h1>Share your thoughts</h1>
         <div className='form-wrapper'>
           <form  
@@ -86,15 +82,15 @@ class CreatePostForm extends Component {
             </div>
 
             <div className='markdownText-wrapper'>  
-              <label>Content:</label>
+              <label>Text:</label>
               <br/>
               <input
                 type="text" 
                 className='textbox'
                 placeholder="Write your content here" 
-                name="markdownText" 
+                name="text" 
                 onChange={this.handleChange}  
-                value={this.state.markdownText}
+                value={this.state.text}
                 required
                 />
             </div>
@@ -112,7 +108,7 @@ class CreatePostForm extends Component {
               "Either write something worth reading or do something worth writing"
             </h2>
 
-            <p>-Benjamin Franklin </p>
+            <p> Benjamin Franklin </p>
           </div>
       </div>
     )

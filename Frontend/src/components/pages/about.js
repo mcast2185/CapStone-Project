@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import aboutImage from "../../../static/assets/images/headshot.png"
+
 
 const About = () => {
   return (

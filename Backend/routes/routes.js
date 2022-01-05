@@ -58,7 +58,7 @@ router.post("/blog/post", (req,res) => {
   const BlogPosts = new BlogPost({
     title: req.body.title,
     description: req.body.description,
-    markdownText: req.body.markdown,
+    text: req.body.text,
   })
   BlogPosts.save();
   res.send(BlogPosts)

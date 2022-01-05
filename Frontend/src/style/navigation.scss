@@ -6,7 +6,7 @@
   height: 55px;
   width: 100vw;
   background-color: rgba(247, 241, 253, 0.9);
-  cursor: pointer;
+  
 
 
   .nav-bar-wrapper {
@@ -23,6 +23,7 @@
       color: rgb(243, 174, 195);
       transition: .5s ease-in-out;
       padding: 8px;
+      cursor: pointer;
 
       &:hover {
         font-size: 18px;

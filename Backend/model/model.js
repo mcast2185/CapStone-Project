@@ -19,10 +19,6 @@ const LoginInfo = new Schema({
 });
 
 const BlogPostField = new Schema({
-  _id: {
-    type: String,
-    unique: true
-  },
   title: {
     type: String,
     required: true
@@ -31,17 +27,9 @@ const BlogPostField = new Schema({
     type: String,
     required: true
   },
-  markdownText: {
+  text: {
     type: String,
     required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  slug: {
-    type: String,
-    unique: true
   }
 });
 

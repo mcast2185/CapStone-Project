@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Truncate from "react-truncate"
 
 const Blogs = (props) => {
-  const {_id, title, description, markdownText} = props.blog;
+  const {_id, title, description, text} = props.blog;
   
   return (
     <React.StrictMode>
@@ -26,7 +26,7 @@ const Blogs = (props) => {
                   </Link>
               </span>
             }>
-            {markdownText}
+            {text}
           </Truncate>
         </div>    
       </div>
