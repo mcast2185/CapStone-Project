@@ -13,9 +13,11 @@ router.get('/home', (req,res) => {
 router.get('/bloghome/user', (req,res) => {
   res.render('/bloghome/user')
 });
+
 router.get('/about', (req,res) => {
   res.render('/about')
 });
+
 
 router.get("/api/users", async (req,res) => {
   const Users = await User.find({})
@@ -26,6 +28,7 @@ router.get("/api/users", async (req,res) => {
   }
 });
 
+
 router.get("/api/blogposts", async (req, res) => {
   const BlogPosts = await BlogPost.find({})
   try {
@@ -35,9 +38,13 @@ router.get("/api/blogposts", async (req, res) => {
   }
 });
 
+
 router.get("/blog/:slug", async (req, res) => {
-  res.render('/blog/:slug')
-  
+  try {
+    res.render('/blog/:slug')
+  } catch (err) {
+    console.log("Server error in blog id");
+  }
 });
 
 

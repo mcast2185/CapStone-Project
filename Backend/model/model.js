@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const {slugify, slug} = require('slugify');
+
 
 const LoginInfo = new Schema({
   name: {
@@ -32,15 +32,6 @@ const BlogPostField = new Schema({
     required: true
   }
 });
-
-
-
-// BlogPostField.pre('validate', function() {
-//   if (this.title){
-//     this.slug = slugify(this.title, {remove: /[*+~.()'"!:@]/, strict: true})
-//   } 
-// });
-
 
 
 const User = mongoose.model("usercredentials", LoginInfo);

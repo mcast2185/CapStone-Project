@@ -17,9 +17,11 @@ class App extends Component {
     this.state = {
       loginStatus: "Not_Logged_In",
       currentUser: {}
+
     };
 
     Icons();
+
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnSuccessfulLogin = this.handleUnSuccessfulLogin.bind(this);
@@ -47,55 +49,54 @@ class App extends Component {
     this.setState({
       loginStatus: "Not_Logged_In"
     });
-    window.localStorage.clear();
+    window.sessionStorage.clear();
   }
 
-  newUserCredentials(user) {
-    const userInfo = []
-    const {name, email, pwd} = user;
-    userInfo.push(name)
-    userInfo.push(email)
-    userInfo.push(pwd)
-    
-    localStorage.setItem("user", userInfo)
 
-    const loggedInUser = localStorage.getItem("user");
+  newUserCredentials(user) {
+    const userInfo = [];
+    const {name, email, pwd} = user;
+    userInfo.push(name);
+    userInfo.push(email);
+    userInfo.push(pwd);
+    
+    sessionStorage.setItem("user", userInfo);
+
+    const loggedInUser = sessionStorage.getItem("user");
 
     if (loggedInUser) {
       this.setState({
         currentUser: loggedInUser
       })
     } else {
-      console.log("fail");
-      
+      console.log("Failed to store user");
     }
+
     this.state.loginStatus === "Logged_In" ? this.allowUserAccess() : null;
   }
+
 
   allowUserAccess() {
     this.state.currentUser !== null ? window.location.replace("/bloghome/user") : null
   }
 
+
   componentDidMount() {
-    if (localStorage.getItem("user") !== null | undefined ) {
+    if (sessionStorage.getItem("user") !== null | undefined ) {
       this.setState({
         loginStatus: "Logged_In"
       })
-    } else if (localStorage.getItem("user") === null | undefined ) {
+    } else if (sessionStorage.getItem("user") === null | undefined ) {
       this.handleUnSuccessfulLogin();
     }
   }
 
-  componentWillUnmount() {
-    if (window.close()) {
-      window.localStorage.clear();
-    }
-  }
 
   render() {
     if (window.close()) {
-      window.localStorage.clear();
-    } 
+      window.sessionStorage.clear();
+    }
+
     return (
       <React.StrictMode>
         <div>
@@ -131,9 +132,9 @@ class App extends Component {
           </Router>
         </div>
       </React.StrictMode>
-    );
-  }
-}
+    )
+  };
+};
 
 
 export default App;

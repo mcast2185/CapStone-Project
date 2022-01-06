@@ -15,10 +15,12 @@ const NavComponent = (props) => {
     )
   };
 
+
   const signOut = () => {
     props.handleSuccessfulLogout();
     props.history.push('/')
   };
+
 
   return (
     <React.StrictMode>
@@ -32,6 +34,7 @@ const NavComponent = (props) => {
               dynamicLink("/bloghome/user", "Blogs") 
             ) : null
           }
+
         </div>
           {
             props.loginStatus === "Logged_In" ? (
@@ -44,6 +47,6 @@ const NavComponent = (props) => {
       </div>
     </React.StrictMode>  
   )
-}
+};
 
-export default withRouter(NavComponent)
+export default withRouter(NavComponent);

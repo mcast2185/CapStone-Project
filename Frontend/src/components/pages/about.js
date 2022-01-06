@@ -1,25 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 const About = () => {
   return (
-    <div className='about-page-wrapper'>
-      <div className='about'>
-        <h1> About </h1>
-      </div>
-      <div className='left-content-wrapper'>
-        {/* <img src={aboutImage}/> */}
-      </div>
-      <div className='right-content-wrapper'>
-        <div className='content-wrapper'>
-          {/* <h2> About me </h2>
-          <p> 
-            
-          </p> */}
+    <React.StrictMode>
+      <div className='about-page-wrapper'>
+        <div className='about'>
+          <h1> About </h1>
         </div>
       </div>
-    </div>
+    </React.StrictMode>
   )
-}
+};
 
 export default About;

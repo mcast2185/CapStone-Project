@@ -7,10 +7,12 @@ class Home extends Component {
   constructor(props){
     super(props);
 
+
     this.handleSuccessfulAuthentication = this.handleSuccessfulAuthentication.bind(this);
     this.handleFailedAuthentication = this.handleFailedAuthentication.bind(this);
     this.handleUserCredentials = this.handleUserCredentials.bind(this);
   }
+
 
   handleSuccessfulAuthentication() {
     this.props.handleSuccessfulLogin();
@@ -23,7 +25,7 @@ class Home extends Component {
 
 
   handleUserCredentials(user) {
-    this.props.newUserCredentials(user)
+    this.props.newUserCredentials(user);
   }
 
   render() {
@@ -38,7 +40,7 @@ class Home extends Component {
         </div>
       </React.StrictMode>
     )
-  }
-}
+  };
+};
 
 export default Home;

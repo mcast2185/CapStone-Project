@@ -17,15 +17,16 @@
     text-shadow: rgb(97, 97, 97) 1px 1px;
   }
 
+
   .border-line-one {
     position: fixed;
+    border-bottom: none;
+    border-left: none;
+    border: 1px solid rgb(180, 179, 179);
     bottom: 0;
     left: 0;
     height: 6.5vh;
     width: 47vw;
-    border: 1px solid rgb(180, 179, 179);
-    border-bottom: none;
-    border-left: none;
   }
 
   
@@ -46,9 +47,19 @@
 
     
     .textbox {
+      text-align: start;
+      word-wrap: inherit;
+      transition: .5s ease-in-out;
+      margin-top: 0px;
       height: 50px;
       width: 600px;
       padding: 2px;
+
+
+      &:focus {
+        height: 200px;
+        width: 650px;
+      }
     }
 
 
@@ -62,6 +73,8 @@
       border-radius: 5px;
     }
   }
+
+
   .quote-wrapper {
     position: fixed;
     display: grid;
@@ -89,7 +102,6 @@
       margin: 30px;
       font-family: 'Saira Extra Condensed', sans-serif;
       color: rgb(59, 58, 58);
-
     }
   }
 }

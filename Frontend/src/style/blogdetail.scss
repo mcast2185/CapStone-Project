@@ -1,0 +1,50 @@
+.blog-post-wrapper {
+  display: flex;
+  justify-content: center;
+  background-image: url("../../static/assets/images/bird.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+
+
+  .blog-post-display-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid cadetblue;
+    background: rgba(219, 219, 219, 0.7);
+    margin-top: 150px;
+    height: 65vh;
+    width: 50vw;
+
+
+    .blog-post-title-wrapper {
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid cadetblue;
+      font-size: 28px;
+    }
+
+
+    p {
+      margin-left: 2.5vw;
+    }
+
+
+    .blog-post-description-wrapper {
+      margin-left: 2.5vw;
+    }
+
+
+    .blog-post-text-wrapper {
+      display: flex;
+      overflow: scroll;
+      height: 30vh;
+      width: 45vw;
+      margin-left: 1.5vw;
+      margin-right: 1.5vw;
+      padding: 15px;
+
+    }
+  } 
+}

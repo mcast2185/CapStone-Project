@@ -6,7 +6,6 @@
   height: 55px;
   width: 100vw;
   background-color: rgba(247, 241, 253, 0.9);
-  
 
 
   .nav-bar-wrapper {
@@ -20,21 +19,31 @@
       display: flex;
       justify-content: center;
       text-decoration: none;
-      color: rgb(243, 174, 195);
-      transition: .5s ease-in-out;
-      padding: 8px;
       cursor: pointer;
+      transition: .5s ease-in-out;
+      color: rgb(243, 174, 195);
+      padding: 8px;
+
 
       &:hover {
+        text-decoration: line-through;
         font-size: 18px;
         color: rgb(137, 1, 190);
-        text-decoration: line-through;
       }
     }
   }
 
+
   .sign-out-wrapper {
+    cursor: pointer;
     margin-left: 10px;
     color: rgba(86, 19, 112, 0.9);
+    transition: .5s ease-in-out;
+
+
+    &:hover {
+      text-decoration: line-through;
+      font-size: 18px;
+    }
   }
 }

@@ -10,7 +10,6 @@
 
 
   .center-blog-wrapper{
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +29,7 @@
       height: 70vh;
       width: 75vw;
     }
+
 
     .content-wrapper {
       display: flex;
@@ -123,5 +123,3 @@
   background-color: rgba(247, 241, 253, 0.9);
   animation: fadeIn 3.5s;
 }
-
-

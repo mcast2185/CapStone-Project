@@ -6,7 +6,6 @@ import Blogs from '../blog-posts/render-blog';
 import BlogModal from '../blog-posts/blog-modal';
 
 
-
 class BlogHome extends Component {
   constructor(props){
     super(props);
@@ -15,13 +14,15 @@ class BlogHome extends Component {
       blogPosts: [],
       blogOrder: 0,
       modalIsOpen: false
-    }
+    };
+
 
     this.fetchBlogPosts = this.fetchBlogPosts.bind(this);
     this.handleNewBlogPost = this.handleNewBlogPost.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleBlogSubmit = this.handleBlogSubmit.bind(this);
   }
+
 
   fetchBlogPosts() {
     axios
@@ -31,12 +32,13 @@ class BlogHome extends Component {
       .then(response => {        
         this.setState({
           blogPosts: response.data
-        })
+        });
       })
       .catch(err => {
         console.error("Could not fetch blogposts: blogs.js", err);
       })
   }
+
 
   handleBlogSubmit(blog) {
     this.setState({
@@ -52,10 +54,11 @@ class BlogHome extends Component {
     });
   }
 
+
   handleNewBlogPost() {
     this.setState({
       modalIsOpen: true
-    })
+    });
   }
 
 
@@ -63,82 +66,62 @@ class BlogHome extends Component {
     this.fetchBlogPosts();
   }
 
+
   render() {
-    
-    const displayPost = [];
     const renderBlogPosts = this.state.blogPosts.map(blog => {
       const order = this.state.blogOrder ++
       const blogPost = <Blogs key={order} order={order} blog={blog} />
-
-      blogPost.props.order +1 === this.state.blogPosts.length ? (
-        displayPost.push(blogPost) 
-      ) : null;
-
+      
       return blogPost
-    });
+    })
 
-    const blogDetail = displayPost[0]
     
     return (
-      <div>
-        <div className='blog-home-wrapper'>
+      <React.StrictMode>
+        <div>
+          <div className='blog-home-wrapper'>
 
-          <div className='center-blog-wrapper'>
-            <div className='background-image-wrapper'>
-              <div className='content-wrapper'>
-                <h1> Blog it! </h1>
+            <div className='center-blog-wrapper'>
+              <div className='background-image-wrapper'>
+                <div className='content-wrapper'>
+                  <h1> Blog it! </h1>
 
-                <div className='short-content-wrapper'>
-                  <p> Add voice to your ideas. </p>
-                  <p> Be heard through your content. </p>
-                  <p> Connect with your writing. </p>
+                  <div className='short-content-wrapper'>
+                    <p> Add voice to your ideas. </p>
+                    <p> Be heard through your content. </p>
+                    <p> Connect with your writing. </p>
+                  </div>
+                  
+                  <h2> Illustrate your thoughts </h2>
                 </div>
-                
-                <h2> Illustrate your thoughts </h2>
+              </div>
+
+              <div className='blog-post-modal-wrapper'>
+                <BlogModal 
+                  handleBlogSubmit={
+                    this.handleBlogSubmit
+                  }
+                  handleModalClose={this.handleModalClose}
+                  modalIsOpen={this.state.modalIsOpen}
+                />
+                <div className='modal-blog-link'>
+                  <a onClick={this.handleNewBlogPost}>
+                    <FontAwesomeIcon icon="plus-square"/>
+                    <br/>
+                  </a>
+                  <p>Create here</p>
+                </div>
               </div>
             </div>
 
-
-          
-
-            <div className='display-blog-wrapper'>
-              <div className='display-blog-title'>
-
-                {/* insert blog title */}
-
-              </div>
-              <div className='display-blog-content'>
-
-                {/* insert blog content */}
-
-              </div>
-
+            <div className='right-column-blog-wrapper'>
+              {renderBlogPosts}
             </div>
-
-            <div className='blog-post-modal-wrapper'>
-              <BlogModal 
-                handleBlogSubmit={
-                  this.handleBlogSubmit
-                }
-                handleModalClose={this.handleModalClose}
-                modalIsOpen={this.state.modalIsOpen}
-              />
-              <div className='modal-blog-link'>
-                <a onClick={this.handleNewBlogPost}>
-                  <FontAwesomeIcon icon="plus-square"/>
-                  <br/>
-                </a>
-                <p>Create here</p>
-              </div>
-            </div>
-          </div>
-          <div className='right-column-blog-wrapper'>
-            {renderBlogPosts}
           </div>
         </div>
-      </div>
+      </React.StrictMode>
     )
-  }
-}
+  };
+};
 
 export default BlogHome;

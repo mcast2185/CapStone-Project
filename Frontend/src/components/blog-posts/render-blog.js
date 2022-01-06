@@ -32,6 +32,6 @@ const Blogs = (props) => {
       </div>
     </React.StrictMode>
   )
-}
+};
 
 export default Blogs;

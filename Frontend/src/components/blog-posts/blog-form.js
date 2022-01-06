@@ -10,8 +10,7 @@ class CreatePostForm extends Component {
       title: "",
       description: "",
       text: ""
-
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBlogSubmission = this.handleBlogSubmission.bind(this);
@@ -35,7 +34,6 @@ class CreatePostForm extends Component {
         { withCredentials: true}
       )
       .then(response => {
-        console.log(response.data)
         this.props.handleFormSubmit(response.data)
       })
       .catch(err => {
@@ -47,72 +45,70 @@ class CreatePostForm extends Component {
 
   render() {
     return (
-      <div className="blog-form-wrapper">
-        <h1>Share your thoughts</h1>
-        <div className='form-wrapper'>
-          <form  
-            method="POST"
-            onSubmit={this.handleBlogSubmission}
-            >
-
-            <div className='title-wrapper'>
-              <label>Title:</label>
-              <br/>
-              <input 
-                type="text" 
-                placeholder="Create your title" 
-                name="title" 
-                onChange={this.handleChange}
-                value={this.state.title}
-                required
-                />
-            </div>
-
-            <div className='description-wrapper'>   
-              <label>Description:</label>
-              <br/>
-              <input 
-                type="text" 
-                placeholder="In a few words, describe the post" 
-                name="description" 
-                onChange={this.handleChange}
-                value={this.state.description}
-                required
-                />
-            </div>
-
-            <div className='markdownText-wrapper'>  
-              <label>Text:</label>
-              <br/>
-              <input
-                type="text" 
-                className='textbox'
-                placeholder="Write your content here" 
-                name="text" 
-                onChange={this.handleChange}  
-                value={this.state.text}
-                required
-                />
-            </div>
-
-            <button 
-              type="submit" 
-              className="btn"
+      <React.StrictMode>
+        <div className="blog-form-wrapper">
+          <h1>Share your thoughts</h1>
+          <div className='form-wrapper'>
+            <form  
+              method="POST"
+              onSubmit={this.handleBlogSubmission}
               >
-              Post
-            </button>
-          </form>
-        </div>
-        <div className='quote-wrapper'>
+
+              <div className='title-wrapper'>
+                <label>Title:</label>
+                <br/>
+                <input 
+                  type="text" 
+                  placeholder="Create your title" 
+                  name="title" 
+                  onChange={this.handleChange}
+                  value={this.state.title}
+                  required
+                  />
+              </div>
+
+              <div className='description-wrapper'>   
+                <label>Description:</label>
+                <br/>
+                <input 
+                  type="text" 
+                  placeholder="In a few words, describe the post" 
+                  name="description" 
+                  onChange={this.handleChange}
+                  value={this.state.description}
+                  required
+                  />
+              </div>
+
+              <div className='markdownText-wrapper'>  
+                <label>Text:</label>
+                <br/>
+                <input
+                  type="text" 
+                  className='textbox'
+                  placeholder="Write your content here" 
+                  name="text" 
+                  onChange={this.handleChange}  
+                  value={this.state.text}
+                  required
+                  />
+              </div>
+              <button type="submit" className="btn">
+                Post
+              </button>
+
+            </form>
+          </div>
+          <div className='quote-wrapper'>
             <h2> 
               "Either write something worth reading or do something worth writing"
             </h2>
-
             <p> Benjamin Franklin </p>
           </div>
-      </div>
+        </div>
+      </React.StrictMode>
     )
-  }
-}
+  };
+};
 
 export default CreatePostForm;

@@ -40,12 +40,8 @@ class LoginForm extends Component {
         if (response.data) {
           this.props.handleSuccessfulAuthentication();
           this.props.handleUserCredentials(response.data);
-        } else {
-          console.log("nope");
-        };
-
-        }
-      )
+        } 
+      })
       .catch(err => {
         console.log('Error registering user:', err);
         this.props.handleFailedAuthentication();
@@ -54,7 +50,6 @@ class LoginForm extends Component {
   }
 
 
-  
   render() {
     return (
       <React.StrictMode>
@@ -118,8 +113,7 @@ class LoginForm extends Component {
         </div>
       </React.StrictMode> 
     )
-  }
-}
-
+  };
+};
 
 export default LoginForm;

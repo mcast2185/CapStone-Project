@@ -16,7 +16,7 @@ class BlogModal extends Component {
         left: "50%",
         right: "auto",
         marginRight: "-50%",
-        transform: "translate(-50%, -50%",
+        transform: "translate(-50%, -50%)",
         width: "800px"
       },
       overlay: {
@@ -32,20 +32,21 @@ class BlogModal extends Component {
 
   render(){
     return (
-      
-      <ReactModal 
-        style={this.customStyles}
-        onRequestClose={() => {
-          this.props.handleModalClose(); 
-        }} 
-        isOpen={this.props.modalIsOpen}
-      >
-        <CreatePostForm
-          handleFormSubmit={this.handleFormSubmit}
-        />
-      </ReactModal>
+      <React.StrictMode>
+        <ReactModal 
+          style={this.customStyles}
+          onRequestClose={() => {
+            this.props.handleModalClose(); 
+          }} 
+          isOpen={this.props.modalIsOpen}
+        >
+          <CreatePostForm
+            handleFormSubmit={this.handleFormSubmit}
+          />
+        </ReactModal>
+      </React.StrictMode>
     )
-  }
-}
+  };
+};
 
 export default BlogModal;

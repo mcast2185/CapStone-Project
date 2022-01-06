@@ -12,14 +12,12 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
 
-  }));
-// app.use(cors({credentials: "include"}))
+  })
+);
 app.use(express.static(__dirname + '/dist/'));
+
 app.get(/.*/, function (req, res) {
   res.sendFile(__dirname + '/dist/index.html');
-})
+});
+
 app.listen(port);
-
-console.log("server started");
-
-// read in to cookies/ on portfolio app = with credentials
