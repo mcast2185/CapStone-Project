@@ -49,7 +49,7 @@ class BlogPostDetail extends Component {
     
     return (
       <React.StrictMode>
-        <div className='blog-post-wrapper'>
+        <div className='blog-post-page-wrapper'>
           <div className='blog-post-display-wrapper'>
             <div className='blog-post-title-wrapper'>
               <h1>  
@@ -57,11 +57,13 @@ class BlogPostDetail extends Component {
               </h1> 
               <br/>
             </div>
-            <p>created by: {sessionStorage.getItem("user").split(',')[0]}</p>
+            
             <div className='blog-post-description-wrapper'>
               <h2> 
                 {description}
               </h2>
+
+              <p>created by: {sessionStorage.getItem("user").split(',')[0]}</p>
             </div>
             <div className='blog-post-text-wrapper'>
               {text}

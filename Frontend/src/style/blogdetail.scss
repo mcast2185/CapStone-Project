@@ -1,4 +1,4 @@
-.blog-post-wrapper {
+.blog-post-page-wrapper {
   display: flex;
   justify-content: center;
   background-image: url("../../static/assets/images/bird.png");
@@ -26,13 +26,13 @@
     }
 
 
-    p {
+    .blog-post-description-wrapper {
       margin-left: 2.5vw;
     }
 
 
-    .blog-post-description-wrapper {
-      margin-left: 2.5vw;
+    p {
+      font-weight: 600;
     }
 
 
@@ -43,7 +43,7 @@
       width: 45vw;
       margin-left: 1.5vw;
       margin-right: 1.5vw;
-      padding: 15px;
+
 
     }
   } 
