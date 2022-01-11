@@ -8,6 +8,7 @@ import pageError from './pages/page-error';
 import Icons from '../../static/assets/icons';
 import BlogPostDetail from './blog-posts/blog-posts-detail';
 import About from './pages/about';
+import BlogHistory from './pages/blog-history';
 
 
 class App extends Component {
@@ -120,12 +121,14 @@ class App extends Component {
               <Route path="/bloghome/user" render={props => (
                 <BlogHome {...props} loginStatus={this.state.loginStatus}/>)}
               />
+              <Route path="/blog-history" component={BlogHistory}/>
 
               <Route path="/blog/:slug" render={props => (
                 <BlogPostDetail {...props} loginStatus={this.state.loginStatus}/> )}
               />
               <Route path="/about" component={About}/>
               <Route component={pageError} />
+
               
               </Switch>
             </div>

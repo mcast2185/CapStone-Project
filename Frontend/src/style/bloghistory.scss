@@ -1,0 +1,26 @@
+.blog-history-wrapper {
+  display: flex;
+  justify-content: center;
+  background-image: url("../../static/assets/images/bird.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+
+
+  .blog-history-post-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 3s ease-in;
+    overflow: scroll;
+    border: 1px solid rgba(230, 184, 179, 0.5);
+    border-radius: 5px;
+    background-color: rgba(247, 241, 253, 0.9);
+    -webkit-animation: fadeIn 3.5s;
+    animation: fadeIn 3.5s;
+    margin-top: 15vh;
+    height: 55vh;
+  }
+}

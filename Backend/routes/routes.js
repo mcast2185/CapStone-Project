@@ -18,6 +18,10 @@ router.get('/about', (req,res) => {
   res.render('/about')
 });
 
+router.get('/blog-history', (req,res) => {
+  res.render('/blog-history')
+});
+
 
 router.get("/api/users", async (req,res) => {
   const Users = await User.find({})

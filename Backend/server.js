@@ -6,18 +6,20 @@ const router = require("./routes/routes")
 const cors = require("cors");
 require("dotenv").config();
 
-const URI = process.env.URI;
+const MONGODB_URI = "mongodb+srv://mcast2185:asdf2185@cluster0.umno5.mongodb.net/chat-login?retryWrites=true&w=majority";
 const port = process.env.PORT || 5050;
 const app = express();
 
-mongoose.connect(URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-  })
-  .then()
-  .catch(err => {
-    console.log("Failed to connect to database");
-  }
+mongoose.connect(MONGODB_URI, async () => { 
+  try {
+    return {
+      useNewUrlParser: true, 
+      useUnifiedTopology: true
+    }
+  } catch (err) {
+    console.log("mongoose connection error:", err);
+    
+  }}
 );
 
 const MongooseConnection = mongoose.connection;
@@ -30,7 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://capstonefrontendpage.herokuapp.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })

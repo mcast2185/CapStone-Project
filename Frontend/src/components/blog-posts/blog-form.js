@@ -26,7 +26,7 @@ class CreatePostForm extends Component {
   
   handleBlogSubmission(event) {
     axios
-      .post("http://localhost:5000/blog/post", {
+      .post("https://capstoneblogpage.herokuapp.com/blog/post", {
         title: this.state.title,
         description: this.state.description,
         text: this.state.text

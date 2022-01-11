@@ -26,7 +26,7 @@ class BlogHome extends Component {
 
   fetchBlogPosts() {
     axios
-      .get("http://localhost:5000/api/blogposts?order_by=createdAt&direction=desc", {
+      .get("https://capstoneblogpage.herokuapp.com/api/blogposts?order_by=createdAt&direction=desc", {
         withCredentials: true
       })
       .then(response => {        

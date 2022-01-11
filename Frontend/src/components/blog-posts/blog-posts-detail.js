@@ -19,7 +19,7 @@ class BlogPostDetail extends Component {
 
   getBlogPost() {
     axios
-      .get("http://localhost:5000/api/blogposts")
+      .get("https://capstoneblogpage.herokuapp.com/api/blogposts")
       .then(response => {
         response.data.map(blog => {
           if (blog._id === this.state.blogId ) {

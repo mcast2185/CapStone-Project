@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "author": "Mario Castro <ozymandias2185@gmail.com> (https://www.npmjs.com/~mcast2185)",
   "license": "ISC",
   "dependencies": {

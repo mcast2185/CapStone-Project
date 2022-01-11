@@ -1,0 +1,19 @@
+@media (max-width: 415px) {
+
+  .right-column-blog-wrapper {
+    display: none;
+    visibility: hidden;
+  }
+
+  .content-wrapper {
+    display: none;
+    visibility: hidden;
+  }
+
+  .ReactModal__Content, 
+  .ReactModal__Content--after-open {
+    height: 45%;
+    width: 25%;
+  }
+
+}
