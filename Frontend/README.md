@@ -1,5 +1,5 @@
-# React/Redux/Router Starter Project
+# React Capstone blog project
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
+> Provided for the use of grading
 
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+*Accessible for both desktop and handhelds*
