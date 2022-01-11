@@ -6,6 +6,8 @@ const router = require("./routes/routes")
 const cors = require("cors");
 require("dotenv").config();
 
+
+// heroku would not permit .env uri
 const MONGODB_URI = "mongodb+srv://mcast2185:asdf2185@cluster0.umno5.mongodb.net/chat-login?retryWrites=true&w=majority";
 const port = process.env.PORT || 5050;
 const app = express();
