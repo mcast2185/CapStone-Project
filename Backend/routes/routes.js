@@ -22,6 +22,10 @@ router.get('/blog-history', (req,res) => {
   res.render('/blog-history')
 });
 
+router.get('/create-blog', (req,res) => {
+  res.render('/create-blog')
+});
+
 
 router.get("/api/users", async (req,res) => {
   const Users = await User.find({})

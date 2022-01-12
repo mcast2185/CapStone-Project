@@ -29,7 +29,12 @@ const NavComponent = (props) => {
 
           {dynamicLink("/", "Home")}
           {dynamicLink("/about", "About")}
-          {dynamicLink("/blog-history", "Blog History")}
+
+          {
+            props.loginStatus === "Logged_In" ? (
+              dynamicLink("/blog-history", "History") 
+            ) : null
+          }
           {
             props.loginStatus === "Logged_In" ? (
               dynamicLink("/bloghome/user", "Blogs") 

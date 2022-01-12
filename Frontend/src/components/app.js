@@ -9,6 +9,7 @@ import Icons from '../../static/assets/icons';
 import BlogPostDetail from './blog-posts/blog-posts-detail';
 import About from './pages/about';
 import BlogHistory from './pages/blog-history';
+import CreatePostForm from './blog-posts/blog-form';
 
 
 class App extends Component {
@@ -118,6 +119,8 @@ class App extends Component {
                   />)}
               />
 
+              <Route path="/create-blog" component={CreatePostForm}/>
+
               <Route path="/bloghome/user" render={props => (
                 <BlogHome {...props} loginStatus={this.state.loginStatus}/>)}
               />
@@ -127,6 +130,7 @@ class App extends Component {
                 <BlogPostDetail {...props} loginStatus={this.state.loginStatus}/> )}
               />
               <Route path="/about" component={About}/>
+              
               <Route component={pageError} />
 
               

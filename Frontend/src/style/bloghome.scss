@@ -107,6 +107,36 @@
       border-bottom: 1px solid;
     }
   }
+
+
+  .modal-blog-link-two {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+    line-height: 25px;
+    left: 40vw;
+    bottom: 0vh;
+    font-size: 20px;
+    color: rgba(86, 19, 112, 0.6);
+
+    .handle-blog-link {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0px;
+    }
+
+    p {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-size: 20px;
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+    }
+  }
 }
 
 

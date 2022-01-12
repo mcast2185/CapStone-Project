@@ -10,7 +10,7 @@
 
   .nav-bar-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: .8fr .8fr .8fr .8fr;
     grid-gap: 15px;
     padding: 5px;
 
@@ -22,12 +22,11 @@
       cursor: pointer;
       transition: .5s ease-in-out;
       color: rgb(243, 174, 195);
-      padding: 8px;
+      padding: 7px;
 
 
       &:hover {
         text-decoration: line-through;
-        font-size: 18px;
         color: rgb(137, 1, 190);
       }
     }
@@ -43,7 +42,6 @@
 
     &:hover {
       text-decoration: line-through;
-      font-size: 18px;
     }
   }
 }

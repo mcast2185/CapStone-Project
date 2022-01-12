@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from "react-router-dom";
 
 import Blogs from '../blog-posts/render-blog';
 import BlogModal from '../blog-posts/blog-modal';
@@ -112,8 +113,14 @@ class BlogHome extends Component {
                   <p>Create here</p>
                 </div>
               </div>
+              <div className='modal-blog-link-two'>
+                  <Link to={"/create-blog"} className='handle-blog-link'> 
+                    <FontAwesomeIcon icon="plus-square"/>
+                    <br/>
+                  </Link>
+                  <p>Create here</p>
+                </div>
             </div>
-
             <div className='right-column-blog-wrapper'>
               {renderBlogPosts}
             </div>

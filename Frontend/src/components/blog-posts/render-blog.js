@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Truncate from "react-truncate"
+import Truncate from "react-truncate";
 
 const Blogs = (props) => {
   const {_id, title, description, text} = props.blog;
