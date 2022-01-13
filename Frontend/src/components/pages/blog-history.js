@@ -13,6 +13,13 @@ class BlogHistory extends Component {
       blogPosts: []
     };
 
+    this.customStyles = {
+      content: {
+        height: "90vh",
+        width: "70vw"
+      }
+    }
+
 
     this.fetchBlogPosts = this.fetchBlogPosts.bind(this);
   }
@@ -50,7 +57,9 @@ class BlogHistory extends Component {
     return (
       <React.StrictMode>
         <div className='blog-history-wrapper'>
-          <div className='blog-history-post-wrapper'>
+          <div className='blog-history-post-wrapper' 
+            style={this.customStyles}
+          >
             {renderBlogPosts}
           </div>
         </div>
