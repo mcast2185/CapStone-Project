@@ -1,5 +1,15 @@
 @media (max-width: 480px) {
 
+  .signup-form-wrapper {
+    height: max-content;
+    width: max-content;
+
+    form {
+      height: fit-content;
+      width: fit-content;
+    }
+  }
+
   .blog-home-wrapper {
     height: 100vh;
     width: 100vw;
